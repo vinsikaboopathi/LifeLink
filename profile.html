@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LifeLink Emergency Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .profile-page {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-header h1 {
+            color: #0b7285;
+            margin-bottom: 5px;
+        }
+
+        .profile-header p {
+            color: #666;
+        }
+
+        .info-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-item {
+            background: #f4f9fb;
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .info-item strong {
+            display: block;
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .info-item span {
+            font-size: 17px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .privacy {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef9f5;
+            border-radius: 10px;
+            color: #28745b;
+            font-size: 14px;
+        }
+
+        .location-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #0b7285;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .location-box {
+            display: none;
+            margin-top: 15px;
+            padding: 18px;
+            background: #f4f9fb;
+            border-radius: 12px;
+        }
+
+        .not-found {
+            text-align: center;
+            padding: 40px;
+        }
+
+        @media(max-width:600px) {
+            .info-box {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+            <h1>LifeLink</h1>
+            <p>Emergency Medical Profile</p>
+        </div>
+
+        <div id="profileContent"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+const savedData = localStorage.getItem("lifelinkProfile");
+
+const container = document.getElementById("profileContent");
+
+if (savedData) {
+
+    const profile = JSON.parse(savedData);
+
+    container.innerHTML = `
+
+        <div class="info-box">
+
+            <div class="info-item">
+                <strong>LifeLink ID</strong>
+                <span>${profile.id || "Not Available"}</span>
+            </div>
+
+            <div class="info-item">
+                <strong>Name</strong>
+                <span>${profile.name || "Not Available"}</span>
+            </div>
+
+            <div class="info-item">
+                <strong>Blood Group</strong>
+                <span>${profile.bloodGroup || "Not Available"}</span>
+            </div>
+
+            <div class="info-item">
+                <strong>Allergy</strong>
+                <span>${profile.allergy || "None"}</span>
+            </div>
+
+            <div class="info-item">
+                <strong>Medical Condition</strong>
+                <span>${profile.condition || "None"}</span>
+            </div>
+
+        </div>
+
+        <div class="privacy">
+            🔒 Personal contact information is not publicly displayed through the QR.
+        </div>
+
+        <button class="location-btn" onclick="showLocation()">
+            📍 View Accident Location
+        </button>
+
+        <div class="location-box" id="locationBox">
+
+            <h3>📍 Accident Location</h3>
+
+            <p>
+                Location data will be provided by the GPS module
+                when the complete hardware system is connected.
+            </p>
+
+            <p>
+                🏥 Nearby hospitals can be displayed here.
+            </p>
+
+        </div>
+    `;
+
+} else {
+
+    container.innerHTML = `
+
+        <div class="not-found">
+
+            <h2>Profile Not Found</h2>
+
+            <p>
+                Please create a LifeLink profile from the main page first.
+            </p>
+
+            <br>
+
+            <a href="index.html">
+                Go to LifeLink Home
+            </a>
+
+        </div>
+    `;
+}
+
+
+function showLocation() {
+
+    const box = document.getElementById("locationBox");
+
+    box.style.display = "block";
+
+}
+
+</script>
+
+</body>
+</html>

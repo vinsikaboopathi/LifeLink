@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LifeLink - Smart Emergency Response System</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>Life</span>Link
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#register">Register</a>
+            <a href="#emergency">Emergency</a>
+        </div>
+    </nav>
+
+
+    <!-- HOME SECTION -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🚨 Smart Emergency Response
+            </div>
+
+            <h1>
+                When the victim cannot speak,
+                <span>LifeLink</span> lets their information speak.
+            </h1>
+
+            <p>
+                An IoT and QR-based emergency response system
+                designed to help accident victims receive faster
+                and more informed assistance.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn"
+                        onclick="scrollToSection('register')">
+                    Create Emergency Profile
+                </button>
+
+                <button class="secondary-btn"
+                        onclick="scrollToSection('emergency')">
+                    Simulate Accident
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- Feature Cards -->
+        <div class="features">
+
+            <div class="feature-card">
+                <div class="feature-icon">📡</div>
+                <h3>Accident Detection</h3>
+                <p>
+                    Detects possible accidents using
+                    movement and impact information.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Location Tracking</h3>
+                <p>
+                    GPS can provide the accident location
+                    for emergency response.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>Emergency QR</h3>
+                <p>
+                    Provides essential medical information
+                    to a nearby bystander.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REGISTER SECTION -->
+    <section id="register" class="section">
+
+        <div class="section-title">
+            <span>01</span>
+            <h2>Emergency Profile</h2>
+            <p>
+                Create a LifeLink profile with essential
+                emergency information.
+            </p>
+        </div>
+
+
+        <div class="form-card">
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name">
+            </div>
+
+
+            <div class="form-group">
+                <label>Blood Group</label>
+
+                <select id="bloodGroup">
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>Allergy</label>
+
+                <input
+                    type="text"
+                    id="allergy"
+                    placeholder="Example: Penicillin / None">
+            </div>
+
+
+            <div class="form-group">
+                <label>Medical Condition</label>
+
+                <textarea
+                    id="condition"
+                    placeholder="Enter important medical condition"></textarea>
+            </div>
+
+
+            <!-- PRIVATE INFORMATION -->
+            <div class="private-box">
+
+                <div class="private-title">
+                    🔒 Private Emergency Contact
+                </div>
+
+                <p>
+                    This information is kept private and will
+                    not be displayed on the public QR profile.
+                </p>
+
+                <input
+                    type="tel"
+                    id="emergencyContact"
+                    placeholder="Emergency contact number">
+
+            </div>
+
+
+            <button class="primary-btn full-btn"
+                    onclick="createProfile()">
+
+                Generate LifeLink Profile
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- QR SECTION -->
+    <section id="qrSection" class="section hidden">
+
+        <div class="section-title">
+
+            <span>02</span>
+
+            <h2>Your LifeLink QR</h2>
+
+            <p>
+                This QR contains only essential emergency
+                information. Your contact number is not public.
+            </p>
+
+        </div>
+
+
+        <div class="qr-card">
+
+            <div id="qrcode"></div>
+
+            <h3 id="profileName">LifeLink User</h3>
+
+            <p>
+                LifeLink ID:
+                <strong id="lifeLinkId">LL0000</strong>
+            </p>
+
+            <div class="privacy-note">
+                🔒 Emergency contact remains private
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EMERGENCY SIMULATOR -->
+    <section id="emergency" class="section emergency-section">
+
+        <div class="section-title">
+
+            <span>03</span>
+
+            <h2>Accident Detection Simulator</h2>
+
+            <p>
+                Simulate the accident detection workflow
+                before connecting the ESP32 hardware.
+            </p>
+
+        </div>
+
+
+        <div class="emergency-card">
+
+            <div id="normalState">
+
+                <div class="status-icon">
+                    🏍️
+                </div>
+
+                <h3>System Monitoring</h3>
+
+                <p>
+                    LifeLink is ready to detect a possible accident.
+                </p>
+
+                <button class="danger-btn"
+                        onclick="simulateAccident()">
+
+                    🚨 Simulate Accident
+
+                </button>
+
+            </div>
+
+
+            <!-- DETECTION STATE -->
+            <div id="detectionState" class="hidden">
+
+                <div class="danger-icon">
+                    ⚠️
+                </div>
+
+                <h3>Possible Accident Detected</h3>
+
+                <p>
+                    Impact + abnormal movement detected.
+                </p>
+
+                <div class="countdown" id="countdown">
+                    30
+                </div>
+
+                <p class="countdown-text">
+                    Please confirm that you are safe.
+                </p>
+
+                <button class="safe-btn"
+                        onclick="cancelEmergency()">
+
+                    ✅ I'M OK
+
+                </button>
+
+            </div>
+
+
+            <!-- EMERGENCY STATE -->
+            <div id="emergencyState" class="hidden">
+
+                <div class="danger-icon">
+                    🚨
+                </div>
+
+                <h3>Emergency Mode Activated</h3>
+
+                <p>
+                    No response received from the rider.
+                </p>
+
+                <div class="alert-details">
+
+                    <p>📍 Location detected</p>
+                    <p>📱 Family notification triggered</p>
+                    <p>🏥 Nearby hospitals available</p>
+
+                </div>
+
+                <button class="primary-btn"
+                        onclick="showLocation()">
+
+                    View Accident Location
+
+                </button>
+
+            </div>
+
+
+            <!-- CANCELLED STATE -->
+            <div id="cancelledState" class="hidden">
+
+                <div class="success-icon">
+                    ✅
+                </div>
+
+                <h3>Alert Cancelled</h3>
+
+                <p>
+                    Rider confirmed that they are safe.
+                </p>
+
+                <button class="secondary-btn"
+                        onclick="resetEmergency()">
+
+                    Back to Monitoring
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOCATION -->
+    <section id="locationSection" class="section hidden">
+
+        <div class="section-title">
+
+            <span>04</span>
+
+            <h2>Accident Location</h2>
+
+        </div>
+
+        <div class="location-card">
+
+            <div class="map-placeholder">
+                📍
+                <span>Accident Location</span>
+            </div>
+
+            <div class="location-info">
+
+                <p>
+                    <strong>Location:</strong> Salem
+                </p>
+
+                <p>
+                    <strong>Latitude:</strong> 11.6643
+                </p>
+
+                <p>
+                    <strong>Longitude:</strong> 78.1460
+                </p>
+
+                <button class="primary-btn">
+                    🗺️ View on Map
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>LifeLink</h3>
+
+        <p>
+            Smart Emergency Response System
+        </p>
+
+        <p class="footer-small">
+            Prototype developed by Idea Crew
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
