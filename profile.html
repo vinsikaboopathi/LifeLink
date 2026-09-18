@@ -142,9 +142,7 @@
 
         <h1>🚑 LifeLink</h1>
 
-        <p>
-            Emergency Medical Profile
-        </p>
+        <p>Emergency Medical Profile</p>
 
     </div>
 
@@ -292,79 +290,96 @@
 </div>
 
 
-
 <script>
 
-    // Read profile data from QR URL
+function decodeProfile() {
+
     const params =
         new URLSearchParams(window.location.search);
 
-    const data =
-        params.get("data");
+    const encoded =
+        params.get("p");
 
+    if (!encoded) {
+        return null;
+    }
 
-    if (data) {
+    try {
 
-        try {
+        const binary =
+            atob(encoded);
 
-            const profile =
-                JSON.parse(
-                    decodeURIComponent(data)
-                );
+        let percentEncoded = "";
 
+        for (let i = 0; i < binary.length; i++) {
 
-            document.getElementById("name")
-                .textContent =
-                profile.name || "Not provided";
+            const hex =
+                binary.charCodeAt(i)
+                    .toString(16)
+                    .padStart(2, "0");
 
-
-            document.getElementById("bloodGroup")
-                .textContent =
-                profile.bloodGroup || "Not provided";
-
-
-            document.getElementById("allergy")
-                .textContent =
-                profile.allergy || "None";
-
-
-            document.getElementById("condition")
-                .textContent =
-                profile.condition || "None";
-
-
-            document.getElementById("lifeLinkId")
-                .textContent =
-                profile.id || "LL-DEMO";
-
-
-        } catch (error) {
-
-            document.getElementById("profileCard")
-                .style.display = "none";
-
-            document.getElementById("error")
-                .style.display = "block";
+            percentEncoded += "%" + hex;
         }
 
-    } else {
+        const json =
+            decodeURIComponent(percentEncoded);
 
-        document.getElementById("profileCard")
-            .style.display = "none";
+        return JSON.parse(json);
 
-        document.getElementById("error")
-            .style.display = "block";
+    } catch (error) {
+
+        console.error(
+            "Profile decoding failed:",
+            error
+        );
+
+        return null;
     }
+}
 
 
-    function showLocation() {
+const profile =
+    decodeProfile();
 
-        const location =
-            document.getElementById("location");
 
-        location.style.display = "block";
+if (profile) {
 
-    }
+    document.getElementById("name")
+        .textContent =
+        profile.name || "Not provided";
+
+    document.getElementById("bloodGroup")
+        .textContent =
+        profile.bloodGroup || "Not provided";
+
+    document.getElementById("allergy")
+        .textContent =
+        profile.allergy || "None";
+
+    document.getElementById("condition")
+        .textContent =
+        profile.condition || "None";
+
+    document.getElementById("lifeLinkId")
+        .textContent =
+        profile.id || "Not provided";
+
+} else {
+
+    document.getElementById("profileCard")
+        .style.display = "none";
+
+    document.getElementById("error")
+        .style.display = "block";
+}
+
+
+function showLocation() {
+
+    document.getElementById("location")
+        .style.display = "block";
+
+}
 
 </script>
 

@@ -13,7 +13,6 @@ function createProfile() {
         return;
     }
 
-    // Create a unique ID for this profile
     const profileId =
         "LL-" + Math.random().toString(36).substring(2, 8).toUpperCase();
 
@@ -25,7 +24,7 @@ function createProfile() {
         condition: condition
     };
 
-    // Save profile on this browser
+    // Save on laptop
     localStorage.setItem(
         "lifelinkProfile",
         JSON.stringify(profile)
@@ -40,12 +39,25 @@ function createProfile() {
             "✅ LifeLink Profile has been created successfully!";
     }
 
-    // Create QR URL
-    const profileData =
-        encodeURIComponent(JSON.stringify(profile));
+    // Convert profile to safe Base64
+    const json = JSON.stringify(profile);
 
-    const qrURL =
-        PROFILE_BASE_URL + "?data=" + profileData;
+    const encodedData = btoa(
+        encodeURIComponent(json).replace(
+            /%([0-9A-F]{2})/g,
+            function (match, p1) {
+                return String.fromCharCode(
+                    parseInt(p1, 16)
+                );
+            }
+        )
+    );
+
+    // QR destination
+    const profileURL =
+        PROFILE_BASE_URL +
+        "?p=" +
+        encodeURIComponent(encodedData);
 
     // Show QR section
     const qrSection =
@@ -67,8 +79,9 @@ function createProfile() {
             document.createElement("img");
 
         img.src =
-            "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
-            encodeURIComponent(qrURL);
+            "https://api.qrserver.com/v1/create-qr-code/" +
+            "?size=220x220&data=" +
+            encodeURIComponent(profileURL);
 
         img.width = 220;
         img.height = 220;
@@ -78,7 +91,7 @@ function createProfile() {
         qrContainer.appendChild(img);
     }
 
-    // Show LifeLink ID
+    // Show ID
     const idElement =
         document.getElementById("lifeLinkId");
 
@@ -87,7 +100,7 @@ function createProfile() {
     }
 
     // Scroll to QR
-    setTimeout(() => {
+    setTimeout(function () {
 
         if (qrSection) {
             qrSection.scrollIntoView({
@@ -96,13 +109,13 @@ function createProfile() {
             });
         }
 
-    }, 300);
+    }, 500);
 }
 
 
-/* =========================================
+/* ================================
    ACCIDENT SIMULATION
-   ========================================= */
+   ================================ */
 
 let accidentTimer = null;
 
@@ -117,9 +130,17 @@ function startAccidentDetection() {
     const emergency =
         document.getElementById("emergencySection");
 
-    if (normal) normal.style.display = "none";
-    if (emergency) emergency.style.display = "none";
-    if (countdownSection) countdownSection.style.display = "block";
+    if (normal) {
+        normal.style.display = "none";
+    }
+
+    if (emergency) {
+        emergency.style.display = "none";
+    }
+
+    if (countdownSection) {
+        countdownSection.style.display = "block";
+    }
 
     let time = 30;
 
@@ -132,7 +153,7 @@ function startAccidentDetection() {
 
     clearInterval(accidentTimer);
 
-    accidentTimer = setInterval(() => {
+    accidentTimer = setInterval(function () {
 
         time--;
 
@@ -191,4 +212,4 @@ function showLocation() {
             block: "center"
         });
     }
-}   
+}
