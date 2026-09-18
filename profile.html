@@ -5,166 +5,128 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>LifeLink Emergency Profile</title>
 
-    <link rel="stylesheet" href="style.css">
-
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4fbfd;
+            background: #f4f8fc;
+            color: #17324d;
         }
 
-        .profile-page {
+        .container {
+            width: 90%;
             max-width: 700px;
-            margin: 40px auto;
-            padding: 20px;
+            margin: 50px auto;
         }
 
-        .profile-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow:
-                0 10px 35px rgba(0,0,0,0.08);
-        }
-
-        .profile-header {
+        .header {
             text-align: center;
             margin-bottom: 30px;
         }
 
-        .profile-header h1 {
-            color: #087f8c;
-            margin-bottom: 5px;
-            font-size: 36px;
+        .header h1 {
+            color: #075985;
+            font-size: 34px;
+            margin-bottom: 10px;
         }
 
-        .profile-header p {
-            color: #666;
-            margin-top: 5px;
+        .header p {
+            color: #668096;
+            font-size: 16px;
         }
 
-        .emergency-badge {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 8px 15px;
-            border-radius: 20px;
-            background: #e8f8f5;
-            color: #087f5b;
+        .profile-card {
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            border: 1px solid #d9e6ef;
+            box-shadow: 0 8px 30px rgba(30, 75, 105, 0.08);
+        }
+
+        .emergency-title {
+            text-align: center;
+            color: #c73535;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            padding: 17px;
+            margin: 12px 0;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 1px solid #e0e9ef;
+        }
+
+        .label {
             font-size: 13px;
+            color: #71869a;
+            margin-bottom: 4px;
+        }
+
+        .value {
+            font-size: 19px;
             font-weight: bold;
+            color: #17324d;
         }
 
-        .info-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .info-item {
-            background: #f4f9fb;
-            padding: 18px;
-            border-radius: 12px;
-            border: 1px solid #e4eef1;
-        }
-
-        .info-item strong {
-            display: block;
-            color: #667;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .info-item span {
-            font-size: 18px;
-            font-weight: 600;
-            color: #222;
-        }
-
-        .blood-group {
-            color: #c0392b !important;
-            font-size: 24px !important;
+        .blood {
+            color: #c73535;
         }
 
         .privacy {
             margin-top: 22px;
-            padding: 16px;
-            border-radius: 12px;
-            background: #eef9f5;
-            color: #28745b;
+            padding: 15px;
+            background: #f0faf9;
+            border-left: 4px solid #008c95;
+            border-radius: 8px;
+            color: #52717e;
             font-size: 14px;
-            line-height: 1.5;
         }
 
         .location-btn {
             width: 100%;
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 22px;
+            padding: 14px;
             border: none;
-            border-radius: 12px;
-            background: #087f8c;
+            border-radius: 9px;
+            background: #087ea4;
             color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .location-btn:hover {
-            opacity: 0.9;
-        }
-
-        .location-box {
-            display: none;
+        .location {
             margin-top: 18px;
-            padding: 20px;
-            border-radius: 12px;
-            background: #f4f9fb;
-            border: 1px solid #dcebef;
-        }
-
-        .location-box h3 {
-            color: #087f8c;
-        }
-
-        .hospital-box {
-            margin-top: 15px;
-            padding: 15px;
-            background: white;
+            padding: 18px;
+            background: #f1f8ff;
             border-radius: 10px;
+            text-align: center;
+            display: none;
         }
 
-        .footer-note {
+        .error {
+            text-align: center;
+            color: #c73535;
+            font-weight: bold;
+        }
+
+        footer {
             text-align: center;
             margin-top: 25px;
-            color: #888;
-            font-size: 12px;
-        }
-
-        @media(max-width: 600px) {
-
-            .profile-page {
-                margin: 15px auto;
-                padding: 12px;
-            }
-
-            .profile-card {
-                padding: 20px;
-            }
-
-            .info-box {
-                grid-template-columns: 1fr;
-            }
-
-            .profile-header h1 {
-                font-size: 30px;
-            }
-
+            color: #71869a;
+            font-size: 13px;
         }
 
     </style>
@@ -174,111 +136,109 @@
 
 <body>
 
+<div class="container">
 
-<div class="profile-page">
+    <div class="header">
 
-    <div class="profile-card">
+        <h1>🚑 LifeLink</h1>
+
+        <p>
+            Emergency Medical Profile
+        </p>
+
+    </div>
 
 
-        <!-- HEADER -->
+    <div
+        class="profile-card"
+        id="profileCard">
 
-        <div class="profile-header">
+        <h2 class="emergency-title">
+            🚨 Emergency Information
+        </h2>
 
-            <h1>LifeLink</h1>
 
-            <p>
-                Smart Emergency Response System
-            </p>
+        <div class="info">
 
-            <div class="emergency-badge">
-                ✓ Emergency Profile
+            <div class="label">
+                Name
+            </div>
+
+            <div
+                class="value"
+                id="name">
             </div>
 
         </div>
 
 
-        <!-- PROFILE INFORMATION -->
+        <div class="info">
 
-        <div class="info-box">
-
-
-            <div class="info-item">
-
-                <strong>LifeLink ID</strong>
-
-                <span id="lifeId">
-                    LL-DEMO01
-                </span>
-
+            <div class="label">
+                Blood Group
             </div>
 
-
-            <div class="info-item">
-
-                <strong>Name</strong>
-
-                <span id="personName">
-                    Demo User
-                </span>
-
+            <div
+                class="value blood"
+                id="bloodGroup">
             </div>
-
-
-            <div class="info-item">
-
-                <strong>Blood Group</strong>
-
-                <span id="bloodGroup"
-                      class="blood-group">
-                    O+
-                </span>
-
-            </div>
-
-
-            <div class="info-item">
-
-                <strong>Allergy</strong>
-
-                <span id="allergy">
-                    None
-                </span>
-
-            </div>
-
-
-            <div class="info-item">
-
-                <strong>Medical Condition</strong>
-
-                <span id="condition">
-                    Asthma
-                </span>
-
-            </div>
-
 
         </div>
 
 
-        <!-- PRIVACY -->
+        <div class="info">
+
+            <div class="label">
+                Allergies
+            </div>
+
+            <div
+                class="value"
+                id="allergy">
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="label">
+                Medical Condition
+            </div>
+
+            <div
+                class="value"
+                id="condition">
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="label">
+                LifeLink ID
+            </div>
+
+            <div
+                class="value"
+                id="lifeLinkId">
+            </div>
+
+        </div>
+
 
         <div class="privacy">
 
             🔒 <strong>Privacy Protected</strong>
 
-            <br>
+            <br><br>
 
-            Only essential emergency medical
-            information is displayed.
-
-            Personal phone numbers and contact
-            information are not publicly displayed.
+            Emergency contact numbers and sensitive
+            personal information are not publicly displayed.
 
         </div>
 
-
-        <!-- LOCATION BUTTON -->
 
         <button
             class="location-btn"
@@ -289,105 +249,124 @@
         </button>
 
 
-        <!-- LOCATION -->
-
         <div
-            class="location-box"
-            id="locationBox">
+            class="location"
+            id="location">
 
+            📡 GPS Location
 
-            <h3>
-                📍 Accident Location
-            </h3>
+            <br><br>
 
+            Prototype Simulation
 
-            <p>
+            <br><br>
 
-                Accident location will be received
-                from the GPS module when the complete
-                hardware system is connected.
-
-            </p>
-
-
-            <div class="hospital-box">
-
-                <strong>
-                    🏥 Nearby Hospitals
-                </strong>
-
-                <p>
-                    Hospital location service can be
-                    integrated with GPS and map services.
-                </p>
-
-            </div>
-
+            🏥 Nearby hospital detection and navigation
+            can be integrated in the future version.
 
         </div>
-
-
-        <div class="footer-note">
-
-            LifeLink Prototype • Emergency Information Only
-
-        </div>
-
 
     </div>
+
+
+    <div
+        class="error"
+        id="error"
+        style="display:none;">
+
+        Invalid or missing LifeLink profile.
+
+    </div>
+
+
+    <footer>
+
+        LifeLink – Smart Emergency Response System
+
+        <br>
+
+        Idea Crew | Knowledge Institute Of Technology
+
+    </footer>
 
 </div>
 
 
+
 <script>
 
+    // Read profile data from QR URL
+    const params =
+        new URLSearchParams(window.location.search);
 
-// ========================================
-// READ LIFELINK ID FROM QR URL
-// ========================================
-
-const urlParams =
-    new URLSearchParams(window.location.search);
-
-const qrId =
-    urlParams.get("id");
+    const data =
+        params.get("data");
 
 
-// ========================================
-// DEMO PROFILE
-// ========================================
+    if (data) {
 
-if (qrId) {
+        try {
 
-    document.getElementById("lifeId").innerText =
-        qrId;
-
-}
+            const profile =
+                JSON.parse(
+                    decodeURIComponent(data)
+                );
 
 
-// ========================================
-// SHOW LOCATION
-// ========================================
+            document.getElementById("name")
+                .textContent =
+                profile.name || "Not provided";
 
-function showLocation() {
 
-    const locationBox =
-        document.getElementById("locationBox");
+            document.getElementById("bloodGroup")
+                .textContent =
+                profile.bloodGroup || "Not provided";
 
-    if (locationBox.style.display === "block") {
 
-        locationBox.style.display = "none";
+            document.getElementById("allergy")
+                .textContent =
+                profile.allergy || "None";
+
+
+            document.getElementById("condition")
+                .textContent =
+                profile.condition || "None";
+
+
+            document.getElementById("lifeLinkId")
+                .textContent =
+                profile.id || "LL-DEMO";
+
+
+        } catch (error) {
+
+            document.getElementById("profileCard")
+                .style.display = "none";
+
+            document.getElementById("error")
+                .style.display = "block";
+        }
 
     } else {
 
-        locationBox.style.display = "block";
+        document.getElementById("profileCard")
+            .style.display = "none";
+
+        document.getElementById("error")
+            .style.display = "block";
+    }
+
+
+    function showLocation() {
+
+        const location =
+            document.getElementById("location");
+
+        location.style.display = "block";
 
     }
 
-}
-
 </script>
-
 
 </body>
 

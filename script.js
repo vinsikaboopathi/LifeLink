@@ -1,3 +1,6 @@
+const PROFILE_BASE_URL =
+    "https://vinsikaboopathi.github.io/LifeLink/profile.html";
+
 function createProfile() {
 
     const name = document.getElementById("name").value.trim();
@@ -5,86 +8,149 @@ function createProfile() {
     const allergy = document.getElementById("allergy").value.trim();
     const condition = document.getElementById("condition").value.trim();
 
-    if (name === "") {
-        alert("Please enter your name.");
+    if (!name || !bloodGroup || !allergy || !condition) {
+        alert("Please fill all profile details.");
         return;
     }
 
-    if (bloodGroup === "") {
-        alert("Please select blood group.");
-        return;
-    }
+    // Create a unique ID for this profile
+    const profileId =
+        "LL-" + Math.random().toString(36).substring(2, 8).toUpperCase();
 
-    if (allergy === "") {
-        alert("Please enter allergy information.");
-        return;
-    }
-
-    if (condition === "") {
-        alert("Please enter medical condition.");
-        return;
-    }
-
-    localStorage.setItem("lifelinkProfile", JSON.stringify({
+    const profile = {
+        id: profileId,
         name: name,
         bloodGroup: bloodGroup,
         allergy: allergy,
-        condition: condition,
-        id: "LL-DEMO01"
-    }));
+        condition: condition
+    };
 
-    document.getElementById("successMessage").style.display = "block";
+    // Save profile on this browser
+    localStorage.setItem(
+        "lifelinkProfile",
+        JSON.stringify(profile)
+    );
 
-    const qrSection = document.getElementById("qrSection");
+    // Success message
+    const success = document.getElementById("successMessage");
 
-    qrSection.style.display = "block";
+    if (success) {
+        success.style.display = "block";
+        success.innerHTML =
+            "✅ LifeLink Profile has been created successfully!";
+    }
 
-    const qr = document.getElementById("qrcode");
+    // Create QR URL
+    const profileData =
+        encodeURIComponent(JSON.stringify(profile));
 
-    qr.innerHTML = "";
+    const qrURL =
+        PROFILE_BASE_URL + "?data=" + profileData;
 
-    const img = document.createElement("img");
+    // Show QR section
+    const qrSection =
+        document.getElementById("qrSection");
 
-    img.src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
-        encodeURIComponent(
-            "https://vinsikaboopathi.github.io/LifeLink/profile.html?id=LL-DEMO01"
-        );
+    if (qrSection) {
+        qrSection.style.display = "block";
+    }
 
-    img.width = 220;
-    img.height = 220;
+    // Generate QR
+    const qrContainer =
+        document.getElementById("qrcode");
 
-    qr.appendChild(img);
+    if (qrContainer) {
 
-    qrSection.scrollIntoView({
-        behavior: "smooth"
-    });
+        qrContainer.innerHTML = "";
+
+        const img =
+            document.createElement("img");
+
+        img.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+            encodeURIComponent(qrURL);
+
+        img.width = 220;
+        img.height = 220;
+
+        img.alt = "LifeLink QR Code";
+
+        qrContainer.appendChild(img);
+    }
+
+    // Show LifeLink ID
+    const idElement =
+        document.getElementById("lifeLinkId");
+
+    if (idElement) {
+        idElement.textContent = profileId;
+    }
+
+    // Scroll to QR
+    setTimeout(() => {
+
+        if (qrSection) {
+            qrSection.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+    }, 300);
 }
 
 
+/* =========================================
+   ACCIDENT SIMULATION
+   ========================================= */
+
+let accidentTimer = null;
+
 function startAccidentDetection() {
 
-    document.getElementById("normalEmergency").style.display = "none";
+    const normal =
+        document.getElementById("normalEmergency");
 
-    document.getElementById("countdownSection").style.display = "block";
+    const countdownSection =
+        document.getElementById("countdownSection");
+
+    const emergency =
+        document.getElementById("emergencySection");
+
+    if (normal) normal.style.display = "none";
+    if (emergency) emergency.style.display = "none";
+    if (countdownSection) countdownSection.style.display = "block";
 
     let time = 30;
 
-    document.getElementById("countdown").textContent = time;
+    const countdown =
+        document.getElementById("countdown");
 
-    window.accidentTimer = setInterval(function () {
+    if (countdown) {
+        countdown.textContent = time;
+    }
+
+    clearInterval(accidentTimer);
+
+    accidentTimer = setInterval(() => {
 
         time--;
 
-        document.getElementById("countdown").textContent = time;
+        if (countdown) {
+            countdown.textContent = time;
+        }
 
         if (time <= 0) {
 
-            clearInterval(window.accidentTimer);
+            clearInterval(accidentTimer);
 
-            document.getElementById("countdownSection").style.display = "none";
+            if (countdownSection) {
+                countdownSection.style.display = "none";
+            }
 
-            document.getElementById("emergencySection").style.display = "block";
+            if (emergency) {
+                emergency.style.display = "block";
+            }
         }
 
     }, 1000);
@@ -93,19 +159,36 @@ function startAccidentDetection() {
 
 function cancelEmergency() {
 
-    clearInterval(window.accidentTimer);
+    clearInterval(accidentTimer);
 
-    document.getElementById("countdownSection").style.display = "none";
+    const countdownSection =
+        document.getElementById("countdownSection");
 
-    document.getElementById("normalEmergency").style.display = "block";
+    const normal =
+        document.getElementById("normalEmergency");
+
+    if (countdownSection) {
+        countdownSection.style.display = "none";
+    }
+
+    if (normal) {
+        normal.style.display = "block";
+    }
 }
 
 
 function showLocation() {
 
-    document.getElementById("locationSection").style.display = "block";
+    const locationSection =
+        document.getElementById("locationSection");
 
-    document.getElementById("locationSection").scrollIntoView({
-        behavior: "smooth"
-    });
-}
+    if (locationSection) {
+
+        locationSection.style.display = "block";
+
+        locationSection.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+}   
