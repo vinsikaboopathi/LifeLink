@@ -1,16 +1,3 @@
-/* =========================================
-   LIFELINK - SMART EMERGENCY RESPONSE SYSTEM
-   ========================================= */
-
-// Demo public profile URL
-const PROFILE_URL =
-    "https://vinsikaboopathi.github.io/LifeLink/profile.html?id=LL-DEMO01";
-
-
-// =========================================
-// CREATE PROFILE
-// =========================================
-
 function createProfile() {
 
     const name = document.getElementById("name").value.trim();
@@ -18,14 +5,13 @@ function createProfile() {
     const allergy = document.getElementById("allergy").value.trim();
     const condition = document.getElementById("condition").value.trim();
 
-    // Basic validation
     if (name === "") {
         alert("Please enter your name.");
         return;
     }
 
     if (bloodGroup === "") {
-        alert("Please select your blood group.");
+        alert("Please select blood group.");
         return;
     }
 
@@ -39,383 +25,87 @@ function createProfile() {
         return;
     }
 
-
-    // Save profile locally for prototype
-    const profile = {
-        id: "LL-DEMO01",
+    localStorage.setItem("lifelinkProfile", JSON.stringify({
         name: name,
         bloodGroup: bloodGroup,
         allergy: allergy,
-        condition: condition
-    };
+        condition: condition,
+        id: "LL-DEMO01"
+    }));
 
-    localStorage.setItem(
-        "lifelinkProfile",
-        JSON.stringify(profile)
-    );
+    document.getElementById("successMessage").style.display = "block";
 
+    const qrSection = document.getElementById("qrSection");
 
-    // Show success message
-    const successMessage =
-        document.getElementById("successMessage");
+    qrSection.style.display = "block";
 
-    if (successMessage) {
-        successMessage.classList.remove("hidden");
-        successMessage.style.display = "block";
-    }
+    const qr = document.getElementById("qrcode");
 
+    qr.innerHTML = "";
 
-    // Update LifeLink ID
-    const lifeLinkId =
-        document.getElementById("lifeLinkId");
+    const img = document.createElement("img");
 
-    if (lifeLinkId) {
-        lifeLinkId.textContent = "LL-DEMO01";
-    }
+    img.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+        encodeURIComponent(
+            "https://vinsikaboopathi.github.io/LifeLink/profile.html?id=LL-DEMO01"
+        );
 
+    img.width = 220;
+    img.height = 220;
 
-    // Generate QR
-    generateQR();
+    qr.appendChild(img);
 
-
-    // Show QR section
-    const qrSection =
-        document.getElementById("qrSection");
-
-    if (qrSection) {
-        qrSection.style.display = "block";
-    }
-
-
-    // Scroll smoothly to QR
-    setTimeout(function () {
-
-        if (qrSection) {
-            qrSection.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }
-
-    }, 300);
+    qrSection.scrollIntoView({
+        behavior: "smooth"
+    });
 }
-
-
-
-// =========================================
-// GENERATE QR CODE
-// =========================================
-
-function generateQR() {
-
-    const qrContainer =
-        document.getElementById("qrcode");
-
-    if (!qrContainer) {
-        console.error("QR container not found.");
-        return;
-    }
-
-
-    // Clear old QR
-    qrContainer.innerHTML = "";
-
-
-    // Create QR image using QR server
-    const qrImage =
-        document.createElement("img");
-
-    qrImage.src =
-        "https://api.qrserver.com/v1/create-qr-code/" +
-        "?size=220x220" +
-        "&data=" +
-        encodeURIComponent(PROFILE_URL);
-
-
-    qrImage.alt =
-        "LifeLink Emergency QR Code";
-
-
-    qrImage.width = 220;
-    qrImage.height = 220;
-
-
-    qrImage.onload = function () {
-
-        console.log("LifeLink QR generated successfully.");
-
-    };
-
-
-    qrImage.onerror = function () {
-
-        qrContainer.innerHTML =
-            "<p style='color:#c53b3b;'>" +
-            "QR could not be loaded. Please check internet connection." +
-            "</p>";
-
-        console.error("QR image failed to load.");
-
-    };
-
-
-    qrContainer.appendChild(qrImage);
-}
-
-
-
-// =========================================
-// ACCIDENT DETECTION SIMULATION
-// =========================================
-
-let countdownTimer = null;
-let remainingSeconds = 30;
 
 
 function startAccidentDetection() {
 
-    const normalEmergency =
-        document.getElementById("normalEmergency");
+    document.getElementById("normalEmergency").style.display = "none";
 
-    const countdownSection =
-        document.getElementById("countdownSection");
+    document.getElementById("countdownSection").style.display = "block";
 
-    const emergencySection =
-        document.getElementById("emergencySection");
+    let time = 30;
 
+    document.getElementById("countdown").textContent = time;
 
-    if (normalEmergency) {
-        normalEmergency.style.display = "none";
-    }
+    window.accidentTimer = setInterval(function () {
 
+        time--;
 
-    if (emergencySection) {
-        emergencySection.style.display = "none";
-    }
+        document.getElementById("countdown").textContent = time;
 
+        if (time <= 0) {
 
-    if (countdownSection) {
-        countdownSection.style.display = "block";
-    }
+            clearInterval(window.accidentTimer);
 
+            document.getElementById("countdownSection").style.display = "none";
 
-    remainingSeconds = 30;
-
-
-    const countdown =
-        document.getElementById("countdown");
-
-    if (countdown) {
-        countdown.textContent = remainingSeconds;
-    }
-
-
-    clearInterval(countdownTimer);
-
-
-    countdownTimer = setInterval(function () {
-
-        remainingSeconds--;
-
-
-        if (countdown) {
-            countdown.textContent = remainingSeconds;
-        }
-
-
-        if (remainingSeconds <= 0) {
-
-            clearInterval(countdownTimer);
-
-            activateEmergency();
-
+            document.getElementById("emergencySection").style.display = "block";
         }
 
     }, 1000);
 }
 
 
-
-// =========================================
-// CANCEL EMERGENCY
-// =========================================
-
 function cancelEmergency() {
 
-    clearInterval(countdownTimer);
+    clearInterval(window.accidentTimer);
 
+    document.getElementById("countdownSection").style.display = "none";
 
-    const countdownSection =
-        document.getElementById("countdownSection");
-
-    const emergencySection =
-        document.getElementById("emergencySection");
-
-    const normalEmergency =
-        document.getElementById("normalEmergency");
-
-
-    if (countdownSection) {
-        countdownSection.style.display = "none";
-    }
-
-
-    if (emergencySection) {
-        emergencySection.style.display = "none";
-    }
-
-
-    if (normalEmergency) {
-        normalEmergency.style.display = "block";
-    }
-
-
-    alert("Emergency cancelled. System is safe.");
+    document.getElementById("normalEmergency").style.display = "block";
 }
 
-
-
-// =========================================
-// ACTIVATE EMERGENCY
-// =========================================
-
-function activateEmergency() {
-
-    const countdownSection =
-        document.getElementById("countdownSection");
-
-    const emergencySection =
-        document.getElementById("emergencySection");
-
-
-    if (countdownSection) {
-        countdownSection.style.display = "none";
-    }
-
-
-    if (emergencySection) {
-        emergencySection.style.display = "block";
-    }
-
-
-    console.log(
-        "Emergency mode activated - prototype simulation."
-    );
-}
-
-
-
-// =========================================
-// SHOW LOCATION
-// =========================================
 
 function showLocation() {
 
-    const locationSection =
-        document.getElementById("locationSection");
+    document.getElementById("locationSection").style.display = "block";
 
-
-    if (locationSection) {
-
-        locationSection.style.display = "block";
-
-
-        setTimeout(function () {
-
-            locationSection.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-        }, 100);
-
-    }
-
+    document.getElementById("locationSection").scrollIntoView({
+        behavior: "smooth"
+    });
 }
-
-
-
-// =========================================
-// LOAD SAVED PROFILE
-// =========================================
-
-function loadSavedProfile() {
-
-    const savedProfile =
-        localStorage.getItem("lifelinkProfile");
-
-
-    if (!savedProfile) {
-        return;
-    }
-
-
-    try {
-
-        const profile =
-            JSON.parse(savedProfile);
-
-
-        const name =
-            document.getElementById("name");
-
-        const bloodGroup =
-            document.getElementById("bloodGroup");
-
-        const allergy =
-            document.getElementById("allergy");
-
-        const condition =
-            document.getElementById("condition");
-
-
-        if (name) {
-            name.value = profile.name || "";
-        }
-
-
-        if (bloodGroup) {
-            bloodGroup.value =
-                profile.bloodGroup || "";
-        }
-
-
-        if (allergy) {
-            allergy.value =
-                profile.allergy || "";
-        }
-
-
-        if (condition) {
-            condition.value =
-                profile.condition || "";
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "Could not load saved LifeLink profile.",
-            error
-        );
-
-    }
-
-}
-
-
-
-// =========================================
-// PAGE LOAD
-// =========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        loadSavedProfile();
-
-        console.log("LifeLink system ready.");
-
-    }
-);
