@@ -1,388 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>LifeLink Emergency Profile</title>
 
     <style>
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f8fc;
-            color: #17324d;
+            background: #f5f8fc;
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .emergency-label {
+            color: #dc2626;
+            font-size: 14px;
+            font-weight: 700;
         }
 
         .container {
             width: 90%;
-            max-width: 700px;
-            margin: 50px auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: #075985;
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: #668096;
-            font-size: 16px;
+            max-width: 650px;
+            margin: 45px auto;
         }
 
         .profile-card {
-            background: white;
+            background: #ffffff;
             border-radius: 18px;
-            padding: 32px;
-            border: 1px solid #d9e6ef;
-            box-shadow: 0 8px 30px rgba(30, 75, 105, 0.08);
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .emergency-title {
+        .title {
             text-align: center;
-            color: #c73535;
+            margin-bottom: 8px;
+            color: #111827;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        .status {
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
             margin-bottom: 25px;
         }
 
-        .info {
-            padding: 17px;
-            margin: 12px 0;
-            background: #f7fafc;
-            border-radius: 10px;
-            border: 1px solid #e0e9ef;
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .info-box.full {
+            grid-column: 1 / -1;
         }
 
         .label {
+            display: block;
+            color: #6b7280;
             font-size: 13px;
-            color: #71869a;
-            margin-bottom: 4px;
+            margin-bottom: 7px;
+            font-weight: 600;
         }
 
         .value {
-            font-size: 19px;
-            font-weight: bold;
-            color: #17324d;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+            word-break: break-word;
         }
 
         .blood {
-            color: #c73535;
+            color: #dc2626;
         }
 
-        .privacy {
+        .warning {
             margin-top: 22px;
-            padding: 15px;
-            background: #f0faf9;
-            border-left: 4px solid #008c95;
-            border-radius: 8px;
-            color: #52717e;
+            padding: 16px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            color: #9a3412;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .id-box {
+            margin-top: 22px;
+            text-align: center;
+            padding: 14px;
+            background: #eff6ff;
+            border-radius: 10px;
+            color: #1d4ed8;
             font-size: 14px;
         }
 
-        .location-btn {
-            width: 100%;
-            margin-top: 22px;
-            padding: 14px;
-            border: none;
-            border-radius: 9px;
-            background: #087ea4;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
+        .invalid-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .location {
-            margin-top: 18px;
-            padding: 18px;
-            background: #f1f8ff;
-            border-radius: 10px;
-            text-align: center;
-            display: none;
+        .invalid-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
         }
 
-        .error {
-            text-align: center;
-            color: #c73535;
-            font-weight: bold;
+        .invalid-title {
+            font-size: 24px;
+            color: #dc2626;
+            margin-bottom: 10px;
         }
 
-        footer {
+        .invalid-text {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .footer {
             text-align: center;
-            margin-top: 25px;
-            color: #71869a;
+            color: #9ca3af;
             font-size: 13px;
+            padding: 25px;
         }
 
+        @media (max-width: 600px) {
+
+            .header {
+                padding: 15px 18px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .emergency-label {
+                font-size: 12px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 30px auto;
+            }
+
+            .profile-card {
+                padding: 22px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-box.full {
+                grid-column: auto;
+            }
+        }
     </style>
-
 </head>
-
 
 <body>
 
-<div class="container">
-
-    <div class="header">
-
-        <h1>🚑 LifeLink</h1>
-
-        <p>Emergency Medical Profile</p>
-
-    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">❤️ LifeLink</div>
+        <div class="emergency-label">EMERGENCY PROFILE</div>
+    </header>
 
 
-    <div
-        class="profile-card"
-        id="profileCard">
+    <!-- Main Content -->
+    <main class="container">
 
-        <h2 class="emergency-title">
-            🚨 Emergency Information
-        </h2>
+        <!-- Valid Profile -->
+        <div class="profile-card" id="profileCard">
 
+            <h1 class="title">Emergency Medical Profile</h1>
 
-        <div class="info">
+            <p class="subtitle">
+                Essential information for emergency assistance
+            </p>
 
-            <div class="label">
-                Name
+            <div class="status">
+                ✓ LifeLink Profile Verified
             </div>
 
-            <div
-                class="value"
-                id="name">
+            <div class="info-grid">
+
+                <!-- Name -->
+                <div class="info-box full">
+                    <span class="label">NAME</span>
+                    <div class="value" id="name">
+                        -
+                    </div>
+                </div>
+
+                <!-- Blood Group -->
+                <div class="info-box">
+                    <span class="label">BLOOD GROUP</span>
+                    <div class="value blood" id="bloodGroup">
+                        -
+                    </div>
+                </div>
+
+                <!-- Allergy -->
+                <div class="info-box">
+                    <span class="label">ALLERGIES</span>
+                    <div class="value" id="allergy">
+                        -
+                    </div>
+                </div>
+
+                <!-- Medical Condition -->
+                <div class="info-box full">
+                    <span class="label">MEDICAL CONDITION</span>
+                    <div class="value" id="condition">
+                        -
+                    </div>
+                </div>
+
             </div>
 
-        </div>
 
-
-        <div class="info">
-
-            <div class="label">
-                Blood Group
+            <div class="warning">
+                ⚠️ <strong>Emergency Use Only</strong><br>
+                This information is provided to assist emergency responders
+                and bystanders during an accident or medical emergency.
             </div>
 
-            <div
-                class="value blood"
-                id="bloodGroup">
-            </div>
 
-        </div>
-
-
-        <div class="info">
-
-            <div class="label">
-                Allergies
-            </div>
-
-            <div
-                class="value"
-                id="allergy">
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="label">
-                Medical Condition
-            </div>
-
-            <div
-                class="value"
-                id="condition">
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="label">
-                LifeLink ID
-            </div>
-
-            <div
-                class="value"
-                id="lifeLinkId">
+            <div class="id-box">
+                LifeLink ID:
+                <strong id="lifeLinkId">-</strong>
             </div>
 
         </div>
 
 
-        <div class="privacy">
+        <!-- Invalid Profile -->
+        <div class="invalid-card" id="invalidCard" style="display: none;">
 
-            🔒 <strong>Privacy Protected</strong>
+            <div class="invalid-icon">
+                ⚠️
+            </div>
 
-            <br><br>
+            <h2 class="invalid-title">
+                Invalid or Missing LifeLink Profile
+            </h2>
 
-            Emergency contact numbers and sensitive
-            personal information are not publicly displayed.
-
-        </div>
-
-
-        <button
-            class="location-btn"
-            onclick="showLocation()">
-
-            📍 View Accident Location
-
-        </button>
-
-
-        <div
-            class="location"
-            id="location">
-
-            📡 GPS Location
-
-            <br><br>
-
-            Prototype Simulation
-
-            <br><br>
-
-            🏥 Nearby hospital detection and navigation
-            can be integrated in the future version.
+            <p class="invalid-text">
+                The QR code does not contain a valid LifeLink emergency
+                profile. Please scan a valid LifeLink QR code again.
+            </p>
 
         </div>
 
-    </div>
+    </main>
 
 
-    <div
-        class="error"
-        id="error"
-        style="display:none;">
-
-        Invalid or missing LifeLink profile.
-
-    </div>
-
-
-    <footer>
-
+    <footer class="footer">
         LifeLink – Smart Emergency Response System
-
-        <br>
-
-        Idea Crew | Knowledge Institute Of Technology
-
     </footer>
 
-</div>
+
+    <script>
+
+        /*
+         * LIFE LINK PROFILE DECODER
+         *
+         * Supports:
+         *
+         * 1. ?data={...}
+         *
+         * 2. ?p=BASE64_DATA
+         */
 
 
-<script>
+        function decodeProfile() {
 
-function decodeProfile() {
+            const params =
+                new URLSearchParams(window.location.search);
 
-    const params =
-        new URLSearchParams(window.location.search);
 
-    const encoded =
-        params.get("p");
+            /* --------------------------------
+               METHOD 1: data=
+               -------------------------------- */
 
-    if (!encoded) {
-        return null;
-    }
+            const data =
+                params.get("data");
 
-    try {
+            if (data) {
 
-        const binary =
-            atob(encoded);
+                try {
 
-        let percentEncoded = "";
+                    const profile =
+                        JSON.parse(data);
 
-        for (let i = 0; i < binary.length; i++) {
+                    return profile;
 
-            const hex =
-                binary.charCodeAt(i)
-                    .toString(16)
-                    .padStart(2, "0");
+                } catch (error) {
 
-            percentEncoded += "%" + hex;
+                    console.error(
+                        "Data profile parsing failed:",
+                        error
+                    );
+
+                }
+            }
+
+
+            /* --------------------------------
+               METHOD 2: p=
+               Base64 encoded profile
+               -------------------------------- */
+
+            const encoded =
+                params.get("p");
+
+            if (!encoded) {
+
+                return null;
+
+            }
+
+
+            try {
+
+                const binary =
+                    atob(encoded);
+
+                let percentEncoded = "";
+
+
+                for (
+                    let i = 0;
+                    i < binary.length;
+                    i++
+                ) {
+
+                    const hex =
+                        binary
+                            .charCodeAt(i)
+                            .toString(16)
+                            .padStart(2, "0");
+
+                    percentEncoded +=
+                        "%" + hex;
+
+                }
+
+
+                const json =
+                    decodeURIComponent(
+                        percentEncoded
+                    );
+
+
+                return JSON.parse(json);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Base64 profile decoding failed:",
+                    error
+                );
+
+                return null;
+
+            }
+
         }
 
-        const json =
-            decodeURIComponent(percentEncoded);
 
-        return JSON.parse(json);
 
-    } catch (error) {
+        /* --------------------------------
+           DISPLAY PROFILE
+           -------------------------------- */
 
-        console.error(
-            "Profile decoding failed:",
-            error
+        function displayProfile() {
+
+            const profile =
+                decodeProfile();
+
+
+            /* No valid profile */
+
+            if (!profile) {
+
+                document.getElementById(
+                    "profileCard"
+                ).style.display = "none";
+
+
+                document.getElementById(
+                    "invalidCard"
+                ).style.display = "block";
+
+
+                return;
+
+            }
+
+
+            /* Name */
+
+            document.getElementById(
+                "name"
+            ).textContent =
+                profile.name || "Not provided";
+
+
+            /* Blood Group */
+
+            document.getElementById(
+                "bloodGroup"
+            ).textContent =
+                profile.bloodGroup || "Not provided";
+
+
+            /* Allergy */
+
+            document.getElementById(
+                "allergy"
+            ).textContent =
+                profile.allergy || "None";
+
+
+            /* Medical Condition */
+
+            document.getElementById(
+                "condition"
+            ).textContent =
+                profile.condition || "None";
+
+
+            /* LifeLink ID */
+
+            document.getElementById(
+                "lifeLinkId"
+            ).textContent =
+                profile.id || "Not available";
+
+        }
+
+
+
+        /* --------------------------------
+           START
+           -------------------------------- */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            displayProfile
         );
 
-        return null;
-    }
-}
-
-
-const profile =
-    decodeProfile();
-
-
-if (profile) {
-
-    document.getElementById("name")
-        .textContent =
-        profile.name || "Not provided";
-
-    document.getElementById("bloodGroup")
-        .textContent =
-        profile.bloodGroup || "Not provided";
-
-    document.getElementById("allergy")
-        .textContent =
-        profile.allergy || "None";
-
-    document.getElementById("condition")
-        .textContent =
-        profile.condition || "None";
-
-    document.getElementById("lifeLinkId")
-        .textContent =
-        profile.id || "Not provided";
-
-} else {
-
-    document.getElementById("profileCard")
-        .style.display = "none";
-
-    document.getElementById("error")
-        .style.display = "block";
-}
-
-
-function showLocation() {
-
-    document.getElementById("location")
-        .style.display = "block";
-
-}
-
-</script>
+    </script>
 
 </body>
-
 </html>
