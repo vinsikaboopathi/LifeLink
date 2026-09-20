@@ -1,130 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create LifeLink Profile</title>
-
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
+<body class="inner-page-body">
+<header class="navbar">
+    <a href="index.html" class="nav-logo"><img src="lifelink-logo.png" alt="LifeLink"></a>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="create-profile.html" class="active">Profile</a>
+        <a href="qr.html">QR</a>
+        <a href="emergency.html">Emergency</a>
+    </nav>
+</header>
 
+<main class="page-container profile-form-page">
+    <section class="form-card">
+        <div class="page-title-row">
+            <div class="page-title-icon">👤</div>
+            <div>
+                <h1>Create LifeLink Profile</h1>
+                <p class="form-subtitle">Add essential medical information for emergency situations.</p>
+            </div>
+        </div>
 
-<body>
+        <div class="privacy-note">
+            <div class="privacy-title">🔒 Privacy Protected</div>
+            <div>Emergency contact numbers and sensitive personal information are not displayed publicly through the QR code.</div>
+        </div>
 
-    <!-- Navbar -->
-    <header class="navbar">
-
-        <a href="index.html" class="nav-logo">
-
-            <img
-                src="lifelink-logo.png"
-                alt="LifeLink"
-            >
-
-        </a>
-
-
-        <nav class="nav-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a
-                href="create-profile.html"
-                class="active"
-            >
-                Profile
-            </a>
-
-            <a href="qr.html">
-                QR
-            </a>
-
-            <a href="emergency.html">
-                Emergency
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <main class="page-container">
-
-        <div class="form-card">
-
-            <div class="form-logo">
-
-                <img
-                    src="lifelink-logo.png"
-                    alt="LifeLink"
-                >
-
+        <form id="profileForm">
+            <div class="field-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" autocomplete="name" required>
             </div>
 
-
-            <h1>
-                Create LifeLink Profile
-            </h1>
-
-            <p class="form-subtitle">
-                Add essential medical information for emergency situations.
-            </p>
-
-
-            <div class="privacy-note">
-
-                🔒 <strong>Privacy Protected</strong>
-
-                <br>
-
-                Only essential emergency information will be
-                available through the public QR profile.
-
-                <br><br>
-
-                Emergency phone numbers are not displayed publicly.
-
-            </div>
-
-
-            <form id="profileForm">
-
-
-                <label for="name">
-                    Full Name
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your name"
-                    required
-                >
-
-
-                <label for="bloodGroup">
-                    Blood Group
-                </label>
-
-                <select
-                    id="bloodGroup"
-                    required
-                >
-
-                    <option value="">
-                        Select blood group
-                    </option>
-
+            <div class="field-group">
+                <label for="bloodGroup">Blood Group</label>
+                <select id="bloodGroup" required>
+                    <option value="">Select blood group</option>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
                     <option value="B+">B+</option>
@@ -133,49 +50,24 @@
                     <option value="AB-">AB-</option>
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
-
                 </select>
+            </div>
 
+            <div class="field-group">
+                <label for="allergy">Allergies</label>
+                <input type="text" id="allergy" placeholder="Example: Penicillin / None">
+            </div>
 
-                <label for="allergy">
-                    Allergies
-                </label>
+            <div class="field-group">
+                <label for="condition">Medical Condition</label>
+                <input type="text" id="condition" placeholder="Example: Asthma / None">
+            </div>
 
-                <input
-                    type="text"
-                    id="allergy"
-                    placeholder="Example: Penicillin / None"
-                >
+            <button type="submit" class="primary-btn full-btn">Generate LifeLink QR</button>
+        </form>
+    </section>
+</main>
 
-
-                <label for="condition">
-                    Medical Condition
-                </label>
-
-                <input
-                    type="text"
-                    id="condition"
-                    placeholder="Example: Asthma / None"
-                >
-
-
-                <button
-                    type="submit"
-                    class="primary-btn full-btn"
-                >
-                    Create LifeLink QR
-                </button>
-
-
-            </form>
-
-        </div>
-
-    </main>
-
-
-    <script src="script.js"></script>
-
+<script src="script.js?v=3"></script>
 </body>
-
 </html>

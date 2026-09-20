@@ -1,133 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        LifeLink Emergency
-    </title>
-
-    <link rel="stylesheet" href="style.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeLink Emergency</title>
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
-
-
 <body>
+<header class="navbar">
+    <a href="index.html" class="nav-logo"><img src="lifelink-logo.png" alt="LifeLink"></a>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="create-profile.html">Profile</a>
+        <a href="qr.html">QR</a>
+        <a href="emergency.html" class="active">Emergency</a>
+    </nav>
+</header>
 
+<main class="page-container">
+    <div class="emergency-card">
+        <div class="emergency-icon">🚨</div>
+        <h1>LifeLink Emergency Demo</h1>
+        <p>Simulates accident detection and emergency response.</p>
 
-    <header class="navbar">
+        <div id="emergencyStatus" class="emergency-status">System Ready</div>
+        <div id="countdown" class="countdown">30</div>
 
-        <a href="index.html" class="nav-logo">
-
-            <img
-                src="lifelink-logo.png"
-                alt="LifeLink"
-            >
-
-        </a>
-
-
-        <nav class="nav-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="create-profile.html">
-                Profile
-            </a>
-
-            <a href="qr.html">
-                QR
-            </a>
-
-            <a
-                href="emergency.html"
-                class="active"
-            >
-                Emergency
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <main class="page-container">
-
-        <div class="emergency-card">
-
-
-            <div class="emergency-icon">
-                🚨
-            </div>
-
-
-            <h1>
-                LifeLink Emergency Demo
-            </h1>
-
-
-            <p>
-                Simulates accident detection and
-                emergency response.
-            </p>
-
-
-            <div
-                id="emergencyStatus"
-                class="emergency-status"
-            >
-                System Ready
-            </div>
-
-
-            <div
-                id="countdown"
-                class="countdown"
-            >
-                30
-            </div>
-
-
-            <button
-                id="startEmergency"
-                class="danger-btn"
-            >
-                Simulate Accident
-            </button>
-
-
-            <button
-                id="cancelEmergency"
-                class="secondary-btn hidden"
-            >
-                Cancel Alert
-            </button>
-
-
-            <button
-                id="locationButton"
-                class="primary-btn hidden"
-            >
-                📍 Open Location
-            </button>
-
-
-        </div>
-
-    </main>
-
-
-    <script src="script.js"></script>
-
+        <button id="startEmergency" class="danger-btn" type="button">Simulate Accident</button>
+        <button id="cancelEmergency" class="secondary-btn hidden" type="button">Cancel Alert</button>
+        <button id="locationButton" class="primary-btn hidden" type="button">📍 Open Location</button>
+    </div>
+</main>
+<script src="script.js?v=3"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', initEmergencyPage);
+</script>
 </body>
-
 </html>

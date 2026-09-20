@@ -1,117 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        LifeLink QR
-    </title>
-
-    <link rel="stylesheet" href="style.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeLink QR</title>
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
+<body class="inner-page-body">
+<header class="navbar">
+    <a href="index.html" class="nav-logo"><img src="lifelink-logo.png" alt="LifeLink"></a>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="create-profile.html">Profile</a>
+        <a href="qr.html" class="active">QR</a>
+        <a href="emergency.html">Emergency</a>
+    </nav>
+</header>
 
-
-<body>
-
-
-    <header class="navbar">
-
-        <a href="index.html" class="nav-logo">
-
-            <img
-                src="lifelink-logo.png"
-                alt="LifeLink"
-            >
-
-        </a>
-
-
-        <nav class="nav-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="create-profile.html">
-                Profile
-            </a>
-
-            <a
-                href="qr.html"
-                class="active"
-            >
-                QR
-            </a>
-
-            <a href="emergency.html">
-                Emergency
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <main class="page-container">
-
-        <div class="qr-card">
-
-            <img
-                src="lifelink-logo.png"
-                alt="LifeLink"
-                class="small-page-logo"
-            >
-
-
-            <h1>
-                Your LifeLink QR
-            </h1>
-
-
-            <p>
-                Scan this QR code to access essential
-                emergency medical information.
-            </p>
-
-
-            <div id="qrArea">
-
-                <div class="loading">
-                    Loading QR...
-                </div>
-
+<main class="page-container">
+    <section class="qr-card">
+        <div class="page-title-row center-title">
+            <div class="page-title-icon">▣</div>
+            <div>
+                <h1>Your LifeLink QR</h1>
+                <p class="form-subtitle">Scan this code to view essential emergency information.</p>
             </div>
-
-
-            <div
-                class="qr-id"
-                id="qrId"
-            >
-            </div>
-
-
-            <a
-                href="create-profile.html"
-                class="secondary-btn"
-            >
-                Update Profile
-            </a>
-
         </div>
 
-    </main>
+        <div class="qr-box" id="qrBox"><p>Generating QR...</p></div>
+        <div class="qr-info" id="qrInfo"></div>
 
-
-    <script src="script.js"></script>
-
+        <div class="qr-actions">
+            <a href="create-profile.html" class="secondary-btn">Edit Profile</a>
+            <button class="primary-btn" type="button" onclick="openQRProfile()">Test Scan</button>
+        </div>
+    </section>
+</main>
+<script src="script.js?v=3"></script>
+<script>document.addEventListener('DOMContentLoaded', initQRPage);</script>
 </body>
-
 </html>
