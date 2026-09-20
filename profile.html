@@ -14,238 +14,7 @@
         LifeLink Emergency Profile
     </title>
 
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-
-        body {
-
-            margin: 0;
-
-            min-height: 100vh;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #f4fbff,
-                    #eef8f7
-                );
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 20px;
-
-            color: #172033;
-
-        }
-
-
-        .profile-card {
-
-            width: 100%;
-
-            max-width: 430px;
-
-            background: white;
-
-            border-radius: 22px;
-
-            padding: 30px;
-
-            box-shadow:
-                0 20px 60px
-                rgba(
-                    25,
-                    55,
-                    85,
-                    0.12
-                );
-
-            border:
-                1px solid #e2ebf2;
-
-        }
-
-
-        .logo {
-
-            text-align: center;
-
-            margin-bottom: 15px;
-
-        }
-
-
-        .logo img {
-
-            width: 100px;
-
-            height: 100px;
-
-            object-fit: contain;
-
-        }
-
-
-        .title {
-
-            text-align: center;
-
-            font-size: 27px;
-
-            font-weight: 800;
-
-            color: #14213d;
-
-        }
-
-
-        .subtitle {
-
-            text-align: center;
-
-            color: #718096;
-
-            font-size: 13px;
-
-            margin-top: 5px;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .emergency-badge {
-
-            text-align: center;
-
-            background: #fff0f0;
-
-            color: #c53b3b;
-
-            padding: 10px;
-
-            border-radius: 10px;
-
-            font-weight: 700;
-
-            font-size: 13px;
-
-            margin-bottom: 20px;
-
-        }
-
-
-        .info {
-
-            padding: 15px;
-
-            background: #f8fafc;
-
-            border-radius: 12px;
-
-            margin-bottom: 12px;
-
-        }
-
-
-        .label {
-
-            font-size: 11px;
-
-            color: #718096;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            font-weight: 700;
-
-        }
-
-
-        .value {
-
-            font-size: 17px;
-
-            font-weight: 700;
-
-            color: #26364b;
-
-            margin-top: 3px;
-
-        }
-
-
-        .blood {
-
-            color: #d94b4b;
-
-            font-size: 22px;
-
-        }
-
-
-        .id {
-
-            text-align: center;
-
-            margin-top: 20px;
-
-            padding: 10px;
-
-            background: #eef8f4;
-
-            color: #267650;
-
-            border-radius: 9px;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-        }
-
-
-        .footer {
-
-            text-align: center;
-
-            margin-top: 20px;
-
-            color: #94a3b8;
-
-            font-size: 11px;
-
-        }
-
-
-        .error {
-
-            text-align: center;
-
-            color: #c53b3b;
-
-            font-weight: 700;
-
-            padding: 30px 10px;
-
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -253,135 +22,156 @@
 <body>
 
 
-    <div
-        class="profile-card"
-        id="profileCard"
-    >
-
-        <div class="logo">
-
-            <img
-                src="lifelink-logo.png"
-                alt="LifeLink"
-            >
-
-        </div>
-
-
-        <div class="title">
-            LifeLink
-        </div>
-
-
-        <div class="subtitle">
-            Emergency Medical Profile
-        </div>
-
-
-        <div class="emergency-badge">
-            🚨 Essential Information
-        </div>
-
-
-        <div class="info">
-
-            <div class="label">
-                Name
-            </div>
-
-            <div
-                class="value"
-                id="name"
-            >
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="label">
-                Blood Group
-            </div>
-
-            <div
-                class="value blood"
-                id="bloodGroup"
-            >
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="label">
-                Allergies
-            </div>
-
-            <div
-                class="value"
-                id="allergy"
-            >
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="label">
-                Medical Condition
-            </div>
-
-            <div
-                class="value"
-                id="condition"
-            >
-                -
-            </div>
-
-        </div>
+    <main class="profile-page">
 
 
         <div
-            class="id"
-            id="lifeLinkId"
+            class="profile-card"
+            id="profileCard"
         >
-            LifeLink ID: -
+
+
+            <div class="profile-logo">
+
+                <img
+                    src="lifelink-logo.png"
+                    alt="LifeLink"
+                >
+
+            </div>
+
+
+            <h1>
+                LifeLink
+            </h1>
+
+
+            <p class="profile-subtitle">
+                Emergency Medical Profile
+            </p>
+
+
+            <div class="emergency-badge">
+                🚨 Essential Information
+            </div>
+
+
+            <div class="info">
+
+                <div class="label">
+                    Name
+                </div>
+
+                <div
+                    class="value"
+                    id="name"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="label">
+                    Blood Group
+                </div>
+
+                <div
+                    class="value blood"
+                    id="bloodGroup"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="label">
+                    Allergies
+                </div>
+
+                <div
+                    class="value"
+                    id="allergy"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="label">
+                    Medical Condition
+                </div>
+
+                <div
+                    class="value"
+                    id="condition"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div
+                class="id"
+                id="lifeLinkId"
+            >
+                LifeLink ID: -
+            </div>
+
+
+            <div class="footer">
+
+                When the victim cannot speak,
+                LifeLink lets their information speak.
+
+            </div>
+
+
         </div>
 
 
-        <div class="footer">
-
-            When the victim cannot speak,
-            LifeLink lets their information speak.
-
-        </div>
-
-    </div>
+    </main>
 
 
     <script>
 
         function showError() {
 
-            document.getElementById(
-                "profileCard"
-            ).innerHTML =
+            document.getElementById("profileCard").innerHTML = `
 
-                '<div class="error">' +
+                <div class="error">
 
-                '⚠️ Invalid or missing LifeLink profile.' +
+                    <div class="error-icon">
+                        ⚠️
+                    </div>
 
-                '<br><br>' +
+                    <h2>
+                        Invalid or missing LifeLink profile.
+                    </h2>
 
-                'Please scan a valid LifeLink QR code.' +
+                    <p>
+                        Please scan a valid LifeLink QR code.
+                    </p>
 
-                '</div>';
+                    <a
+                        href="index.html"
+                        class="secondary-btn"
+                    >
+                        Go Home
+                    </a>
+
+                </div>
+
+            `;
 
         }
 
@@ -397,9 +187,10 @@
             let profile = null;
 
 
-            /* -----------------------------------------
-               METHOD 1: ?data=
-               ----------------------------------------- */
+            /*
+                Method 1:
+                ?data=
+            */
 
             const data =
                 params.get("data");
@@ -410,9 +201,7 @@
                 try {
 
                     profile =
-                        JSON.parse(
-                            data
-                        );
+                        JSON.parse(data);
 
                 } catch (error) {
 
@@ -425,9 +214,10 @@
             }
 
 
-            /* -----------------------------------------
-               METHOD 2: ?p=
-               ----------------------------------------- */
+            /*
+                Method 2:
+                ?p=
+            */
 
             if (!profile) {
 
@@ -463,9 +253,9 @@
             }
 
 
-            /* -----------------------------------------
-               DISPLAY PROFILE
-               ----------------------------------------- */
+            /*
+                Display Profile
+            */
 
             if (
                 !profile ||

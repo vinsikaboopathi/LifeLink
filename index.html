@@ -1,173 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeLink | Smart Emergency Response System</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        LifeLink - Smart Emergency Response System
+    </title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-<div class="splash">
-    <div class="animated-logo splash-logo-wrap">
-        <img src="lifelink-logo.png" class="splash-logo" alt="LifeLink logo">
 
-        <svg class="heartbeat-overlay splash-heartbeat"
-             viewBox="0 0 100 20"
-             aria-hidden="true">
-            <path d="M2 10 H35 L40 10 L44 3 L48 17 L52 2 L56 16 L60 10 H98"/>
-        </svg>
-    </div>
-</div>
+    <!-- =================================================
+         SPLASH SCREEN
+         ================================================= -->
 
-<header class="navbar">
+    <div class="splash-screen" id="splashScreen">
 
-    <a class="nav-brand" href="index.html">
-        <img src="lifelink-logo.png" alt="LifeLink">
-    </a>
+        <div class="splash-logo">
 
-    <nav class="nav-links">
-        <a class="active" href="index.html">Home</a>
-        <a href="profile.html">Profile</a>
-        <a href="qr.html">QR</a>
-        <a href="emergency.html">Emergency</a>
-    </nav>
+            <!-- ORIGINAL LOGO -->
+            <img
+                src="lifelink-logo.png"
+                alt="LifeLink Logo"
+                class="splash-logo-image"
+            >
 
-</header>
 
-<main class="page">
+            <!--
+                White mask hides only the original
+                static heartbeat line.
+            -->
+            <div class="heartbeat-mask"></div>
 
-<section class="hero">
 
-    <div class="hero-wrap">
+            <!-- NEW ANIMATED HEARTBEAT -->
+            <svg
+                class="splash-heartbeat"
+                viewBox="0 0 1000 100"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+            >
 
-        <div>
+                <path
+                    class="splash-heartbeat-path"
+                    d="
+                        M0 58
+                        L350 58
+                        L405 58
+                        L435 58
+                        L465 18
+                        L495 92
+                        L525 58
+                        L575 58
+                        L1000 58
+                    "
+                />
 
-            <div class="badge">
-                SMART • SAFE • CONNECTED
-            </div>
-
-            <h1>
-                When the victim<br>
-                cannot speak,<br>
-                <span>LifeLink</span> lets their<br>
-                information speak.
-            </h1>
-
-            <p>
-                LifeLink is an IoT and QR-based emergency response
-                system designed to provide essential medical information,
-                accident alerts and location support when it matters most.
-            </p>
-
-            <div class="hero-actions">
-
-                <a class="btn primary" href="profile.html">
-                    Create LifeLink Profile
-                </a>
-
-                <a class="btn secondary" href="qr.html">
-                    View QR Profile
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="hero-logo-card">
-
-            <div class="animated-logo hero-logo-wrap">
-
-                <img src="lifelink-logo.png"
-                     alt="LifeLink Smart Emergency Response System">
-
-                <svg class="heartbeat-overlay hero-heartbeat"
-                     viewBox="0 0 100 20"
-                     aria-hidden="true">
-
-                    <path d="M2 10 H35 L40 10 L44 3 L48 17 L52 2 L56 16 L60 10 H98"/>
-
-                </svg>
-
-            </div>
+            </svg>
 
         </div>
 
     </div>
 
-</section>
 
 
-<section class="features">
+    <!-- =================================================
+         NAVBAR
+         ================================================= -->
 
-    <div class="feature-grid">
+    <header class="navbar">
 
-        <article class="feature-card">
+        <div class="nav-logo">
 
-            <div class="feature-icon">🚨</div>
+            <img
+                src="lifelink-logo.png"
+                alt="LifeLink Logo"
+            >
 
-            <h3>
-                Emergency Alert
-            </h3>
-
-            <p>
-                Quick emergency response when the victim cannot communicate.
-            </p>
-
-        </article>
+        </div>
 
 
-        <article class="feature-card">
+        <nav class="nav-links">
 
-            <div class="feature-icon">🏍️</div>
-
-            <h3>
-                Accident Detection
-            </h3>
-
-            <p>
-                ESP32 and MPU6050 can detect a possible accident.
-            </p>
-
-        </article>
+            <a
+                href="index.html"
+                class="active"
+            >
+                Home
+            </a>
 
 
-        <article class="feature-card">
-
-            <div class="feature-icon">📍</div>
-
-            <h3>
-                Location Assistance
-            </h3>
-
-            <p>
-                GPS location can support faster emergency assistance.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-</main>
+            <a href="create-profile.html">
+                Profile
+            </a>
 
 
-<footer>
+            <a href="qr.html">
+                QR
+            </a>
 
-    <h3>LifeLink</h3>
 
-    <p>
-        Smart Emergency Response System
-    </p>
+            <a href="emergency.html">
+                Emergency
+            </a>
 
-    <small>
-        “When the victim cannot speak,
-        LifeLink lets their information speak.”
-    </small>
+        </nav>
 
-</footer>
+    </header>
+
+
+
+    <!-- =================================================
+         MAIN
+         ================================================= -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="hero">
+
+
+            <!-- LEFT CONTENT -->
+
+            <div class="hero-content">
+
+
+                <div class="hero-badge">
+                    SMART • SAFE • CONNECTED
+                </div>
+
+
+
+                <!-- MAIN QUOTE -->
+
+                <h1 class="hero-title">
+
+                    When the victim cannot speak,
+
+                    <br>
+
+
+                    <span class="lifelink-word">
+
+                        LifeL
+
+                        <!-- HEART + I STEM -->
+
+                        <span class="heart-i-wrap">
+
+                            <span class="heart-i">
+                                ♥
+                            </span>
+
+                            <span class="i-stem"></span>
+
+                        </span>
+
+                        nk
+
+                    </span>
+
+
+                    lets their information speak.
+
+                </h1>
+
+
+
+                <p class="hero-description">
+
+                    A smart emergency response system that
+                    connects accident detection, medical
+                    information and emergency assistance
+                    in critical situations.
+
+                </p>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="hero-buttons">
+
+
+                    <a
+                        href="create-profile.html"
+                        class="primary-btn"
+                    >
+                        Create Profile
+                    </a>
+
+
+                    <a
+                        href="emergency.html"
+                        class="secondary-btn"
+                    >
+                        Emergency Demo
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RIGHT LOGO CARD
+                 ================================================= -->
+
+            <div class="hero-logo-card">
+
+                <div class="logo-glow"></div>
+
+
+                <!-- ONLY ORIGINAL LOGO -->
+                <!-- NO HEARTBEAT ANIMATION HERE -->
+
+                <img
+                    src="lifelink-logo.png"
+                    alt="LifeLink Smart Emergency Response System"
+                    class="hero-main-logo"
+                >
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FEATURES
+             ================================================= -->
+
+        <section class="features-section">
+
+
+            <div class="section-heading">
+
+                <span>
+                    WHY LIFELINK?
+                </span>
+
+
+                <h2>
+                    Designed for critical moments
+                </h2>
+
+
+                <p>
+                    LifeLink helps provide essential information
+                    and emergency assistance when the victim
+                    cannot communicate.
+                </p>
+
+            </div>
+
+
+
+            <div class="features-grid">
+
+
+                <!-- FEATURE 1 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🚨
+                    </div>
+
+
+                    <h3>
+                        Emergency Alert
+                    </h3>
+
+
+                    <p>
+                        Detect a possible accident and begin
+                        an emergency response process with
+                        a short confirmation period.
+                    </p>
+
+                </div>
+
+
+
+                <!-- FEATURE 2 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🛵
+                    </div>
+
+
+                    <h3>
+                        Accident Detection
+                    </h3>
+
+
+                    <p>
+                        ESP32 and MPU6050 can be used to detect
+                        sudden impact and abnormal vehicle tilt.
+                    </p>
+
+                </div>
+
+
+
+                <!-- FEATURE 3 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📍
+                    </div>
+
+
+                    <h3>
+                        Location Assistance
+                    </h3>
+
+
+                    <p>
+                        GPS location can help identify the
+                        accident location and support nearby
+                        hospital navigation.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             HOW IT WORKS
+             ================================================= -->
+
+        <section class="how-section">
+
+
+            <div class="section-heading">
+
+                <span>
+                    HOW IT WORKS
+                </span>
+
+
+                <h2>
+                    Simple. Fast. Connected.
+                </h2>
+
+            </div>
+
+
+
+            <div class="steps-container">
+
+
+                <!-- STEP 1 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+
+                    <h3>
+                        Create Profile
+                    </h3>
+
+
+                    <p>
+                        Register essential medical information
+                        securely in the LifeLink system.
+                    </p>
+
+                </div>
+
+
+
+                <!-- STEP 2 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+
+                    <h3>
+                        Generate QR
+                    </h3>
+
+
+                    <p>
+                        Generate a unique QR code that can
+                        be placed on a bike or helmet.
+                    </p>
+
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+
+                    <h3>
+                        Scan in Emergency
+                    </h3>
+
+
+                    <p>
+                        A bystander can scan the QR code to
+                        access essential emergency information.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         FOOTER
+         ================================================= -->
+
+    <footer class="footer">
+
+
+        <div class="footer-logo">
+
+            <img
+                src="lifelink-logo.png"
+                alt="LifeLink"
+            >
+
+        </div>
+
+
+        <p>
+            When the victim cannot speak,
+            LifeLink lets their information speak.
+        </p>
+
+
+        <span>
+            © 2026 LifeLink • Smart Emergency Response System
+        </span>
+
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>

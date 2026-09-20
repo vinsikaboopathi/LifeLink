@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create LifeLink Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+
+        <a href="index.html" class="nav-logo">
+
+            <img
+                src="lifelink-logo.png"
+                alt="LifeLink"
+            >
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a
+                href="create-profile.html"
+                class="active"
+            >
+                Profile
+            </a>
+
+            <a href="qr.html">
+                QR
+            </a>
+
+            <a href="emergency.html">
+                Emergency
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="page-container">
+
+        <div class="form-card">
+
+            <div class="form-logo">
+
+                <img
+                    src="lifelink-logo.png"
+                    alt="LifeLink"
+                >
+
+            </div>
+
+
+            <h1>
+                Create LifeLink Profile
+            </h1>
+
+            <p class="form-subtitle">
+                Add essential medical information for emergency situations.
+            </p>
+
+
+            <div class="privacy-note">
+
+                🔒 <strong>Privacy Protected</strong>
+
+                <br>
+
+                Only essential emergency information will be
+                available through the public QR profile.
+
+                <br><br>
+
+                Emergency phone numbers are not displayed publicly.
+
+            </div>
+
+
+            <form id="profileForm">
+
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label for="bloodGroup">
+                    Blood Group
+                </label>
+
+                <select
+                    id="bloodGroup"
+                    required
+                >
+
+                    <option value="">
+                        Select blood group
+                    </option>
+
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+
+                </select>
+
+
+                <label for="allergy">
+                    Allergies
+                </label>
+
+                <input
+                    type="text"
+                    id="allergy"
+                    placeholder="Example: Penicillin / None"
+                >
+
+
+                <label for="condition">
+                    Medical Condition
+                </label>
+
+                <input
+                    type="text"
+                    id="condition"
+                    placeholder="Example: Asthma / None"
+                >
+
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
+                    Create LifeLink QR
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

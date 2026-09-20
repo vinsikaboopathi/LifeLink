@@ -3,19 +3,18 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>LifeLink | Emergency</title>
+    <title>
+        LifeLink Emergency
+    </title>
 
-<link
-    rel="stylesheet"
-    href="style.css"
->
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -23,214 +22,111 @@
 <body>
 
 
-<header class="navbar">
+    <header class="navbar">
 
-    <a
-        class="nav-brand"
-        href="index.html"
-    >
+        <a href="index.html" class="nav-logo">
 
-        <img
-            src="lifelink-logo.png"
-            alt="LifeLink"
-        >
+            <img
+                src="lifelink-logo.png"
+                alt="LifeLink"
+            >
 
-    </a>
-
-
-    <nav class="nav-links">
-
-        <a href="index.html">
-            Home
         </a>
 
-        <a href="profile.html">
-            Profile
-        </a>
 
-        <a href="qr.html">
-            QR
-        </a>
+        <nav class="nav-links">
 
-        <a
-            class="active"
-            href="emergency.html"
-        >
-            Emergency
-        </a>
+            <a href="index.html">
+                Home
+            </a>
 
-    </nav>
+            <a href="create-profile.html">
+                Profile
+            </a>
 
-</header>
+            <a href="qr.html">
+                QR
+            </a>
 
+            <a
+                href="emergency.html"
+                class="active"
+            >
+                Emergency
+            </a>
 
+        </nav>
 
-<main class="page">
+    </header>
 
-<section class="section">
 
+    <main class="page-container">
 
-<div class="section-title">
+        <div class="emergency-card">
 
-    <span>
-        ACCIDENT RESPONSE
-    </span>
 
-    <h2>
-        Emergency Detection
-    </h2>
+            <div class="emergency-icon">
+                🚨
+            </div>
 
-    <p>
-        Software simulation of the
-        ESP32 + MPU6050 emergency flow.
-    </p>
 
-</div>
+            <h1>
+                LifeLink Emergency Demo
+            </h1>
 
 
+            <p>
+                Simulates accident detection and
+                emergency response.
+            </p>
 
-<div
-    class="emergency-card"
-    id="readyCard"
->
 
-    <div class="status-icon">
-        🛡️
-    </div>
+            <div
+                id="emergencyStatus"
+                class="emergency-status"
+            >
+                System Ready
+            </div>
 
-    <h3>
-        System Ready
-    </h3>
 
-    <p>
-        LifeLink is monitoring
-        for a possible accident.
-    </p>
+            <div
+                id="countdown"
+                class="countdown"
+            >
+                30
+            </div>
 
-    <button
-        class="btn danger"
-        id="simulate"
-    >
 
-        🚨 Simulate Accident
+            <button
+                id="startEmergency"
+                class="danger-btn"
+            >
+                Simulate Accident
+            </button>
 
-    </button>
 
-</div>
+            <button
+                id="cancelEmergency"
+                class="secondary-btn hidden"
+            >
+                Cancel Alert
+            </button>
 
 
+            <button
+                id="locationButton"
+                class="primary-btn hidden"
+            >
+                📍 Open Location
+            </button>
 
-<div
-    class="emergency-card hidden"
-    id="countdownCard"
->
 
-    <div class="status-icon">
-        🚨
-    </div>
+        </div>
 
-    <h3>
-        Possible Accident Detected
-    </h3>
+    </main>
 
-    <p>
-        Please confirm that you are safe.
-    </p>
 
-    <div
-        id="countdown"
-        class="countdown"
-    >
-        30
-    </div>
-
-    <p>
-        Emergency alert will be triggered automatically.
-    </p>
-
-    <button
-        class="btn safe"
-        id="safe"
-    >
-
-        ✓ I am Safe
-
-    </button>
-
-</div>
-
-
-
-<div
-    class="emergency-card hidden"
-    id="alertCard"
->
-
-    <div class="status-icon">
-        🚨
-    </div>
-
-    <h3>
-        Emergency Alert Activated
-    </h3>
-
-    <p>
-        Emergency response has been initiated.
-    </p>
-
-
-    <div class="alert-box">
-
-        <p>
-            <b>Status:</b>
-            Possible accident
-        </p>
-
-        <p>
-            <b>GPS:</b>
-            Location ready
-        </p>
-
-        <p>
-            <b>Alert:</b>
-            Emergency notification ready
-        </p>
-
-    </div>
-
-
-    <button
-        class="btn primary"
-        id="maps"
-    >
-
-        📍 Open Maps
-
-    </button>
-
-</div>
-
-
-</section>
-
-</main>
-
-
-
-<footer>
-
-    <h3>
-        LifeLink
-    </h3>
-
-    <p>
-        Smart Emergency Response System
-    </p>
-
-</footer>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 

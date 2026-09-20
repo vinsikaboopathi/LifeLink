@@ -3,19 +3,18 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>LifeLink | QR</title>
+    <title>
+        LifeLink QR
+    </title>
 
-<link
-    rel="stylesheet"
-    href="style.css"
->
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -23,143 +22,95 @@
 <body>
 
 
-<header class="navbar">
+    <header class="navbar">
 
-    <a
-        class="nav-brand"
-        href="index.html"
-    >
+        <a href="index.html" class="nav-logo">
 
-        <img
-            src="lifelink-logo.png"
-            alt="LifeLink"
-        >
+            <img
+                src="lifelink-logo.png"
+                alt="LifeLink"
+            >
 
-    </a>
-
-
-    <nav class="nav-links">
-
-        <a href="index.html">
-            Home
         </a>
 
-        <a href="profile.html">
-            Profile
-        </a>
 
-        <a
-            class="active"
-            href="qr.html"
-        >
-            QR
-        </a>
+        <nav class="nav-links">
 
-        <a href="emergency.html">
-            Emergency
-        </a>
+            <a href="index.html">
+                Home
+            </a>
 
-    </nav>
+            <a href="create-profile.html">
+                Profile
+            </a>
 
-</header>
+            <a
+                href="qr.html"
+                class="active"
+            >
+                QR
+            </a>
 
+            <a href="emergency.html">
+                Emergency
+            </a>
 
+        </nav>
 
-<main class="page">
-
-<section class="section">
-
-
-<div class="section-title">
-
-    <span>
-        YOUR QR
-    </span>
-
-    <h2>
-        Your LifeLink QR
-    </h2>
-
-    <p>
-        Generate the QR from your LifeLink profile
-        and place it on the bike or helmet.
-    </p>
-
-</div>
+    </header>
 
 
+    <main class="page-container">
 
-<div class="qr-card">
+        <div class="qr-card">
 
-
-<div
-    id="qrcode"
-    class="qr-box"
->
-
-    <div class="qr-empty">
-
-        Create a profile first
-        to generate your QR.
-
-    </div>
-
-</div>
+            <img
+                src="lifelink-logo.png"
+                alt="LifeLink"
+                class="small-page-logo"
+            >
 
 
-
-<h3>
-    LifeLink ID
-</h3>
-
-
-<strong id="lifeLinkId">
-    —
-</strong>
+            <h1>
+                Your LifeLink QR
+            </h1>
 
 
-
-<div class="privacy-note">
-
-    🔒 Only essential emergency information is shared.
-
-</div>
+            <p>
+                Scan this QR code to access essential
+                emergency medical information.
+            </p>
 
 
+            <div id="qrArea">
 
-<a
-    class="btn primary"
-    style="margin-top:18px"
-    href="profile.html"
->
+                <div class="loading">
+                    Loading QR...
+                </div>
 
-    Create / Update Profile
-
-</a>
+            </div>
 
 
-</div>
-
-</section>
-
-</main>
-
-
-
-<footer>
-
-    <h3>
-        LifeLink
-    </h3>
-
-    <p>
-        Smart Emergency Response System
-    </p>
-
-</footer>
+            <div
+                class="qr-id"
+                id="qrId"
+            >
+            </div>
 
 
-<script src="script.js"></script>
+            <a
+                href="create-profile.html"
+                class="secondary-btn"
+            >
+                Update Profile
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
 
 </body>
 
