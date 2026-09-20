@@ -1,215 +1,346 @@
+const PROFILE_KEY = "lifelinkProfile";
+
 const PROFILE_BASE_URL =
     "https://vinsikaboopathi.github.io/LifeLink/profile.html";
 
-function createProfile() {
 
-    const name = document.getElementById("name").value.trim();
-    const bloodGroup = document.getElementById("bloodGroup").value;
-    const allergy = document.getElementById("allergy").value.trim();
-    const condition = document.getElementById("condition").value.trim();
+function getProfile(){
 
-    if (!name || !bloodGroup || !allergy || !condition) {
-        alert("Please fill all profile details.");
-        return;
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(PROFILE_KEY) || "null"
+        );
+
+    }catch(e){
+
+        return null;
+
     }
 
-    const profileId =
-        "LL-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+}
 
-    const profile = {
-        id: profileId,
-        name: name,
-        bloodGroup: bloodGroup,
-        allergy: allergy,
-        condition: condition
-    };
 
-    // Save on laptop
-    localStorage.setItem(
-        "lifelinkProfile",
-        JSON.stringify(profile)
-    );
+function encodeBase64Unicode(value){
 
-    // Success message
-    const success = document.getElementById("successMessage");
-
-    if (success) {
-        success.style.display = "block";
-        success.innerHTML =
-            "✅ LifeLink Profile has been created successfully!";
-    }
-
-    // Convert profile to safe Base64
-    const json = JSON.stringify(profile);
-
-    const encodedData = btoa(
-        encodeURIComponent(json).replace(
+    return btoa(
+        encodeURIComponent(value).replace(
             /%([0-9A-F]{2})/g,
-            function (match, p1) {
-                return String.fromCharCode(
-                    parseInt(p1, 16)
-                );
-            }
+            (m,p) =>
+                String.fromCharCode(
+                    parseInt(p,16)
+                )
         )
     );
 
-    // QR destination
+}
+
+
+/* =========================
+   CREATE PROFILE
+========================= */
+
+function createProfile(){
+
+    const name =
+        document.getElementById("name")?.value.trim();
+
+    const bloodGroup =
+        document.getElementById("bloodGroup")?.value;
+
+    const allergy =
+        document.getElementById("allergy")?.value.trim();
+
+    const condition =
+        document.getElementById("condition")?.value.trim();
+
+
+    if(
+        !name ||
+        !bloodGroup ||
+        !allergy ||
+        !condition
+    ){
+
+        alert(
+            "Please fill all profile details."
+        );
+
+        return;
+
+    }
+
+
+    const profile = {
+
+        id:
+            "LL-" +
+            Math.random()
+                .toString(36)
+                .substring(2,8)
+                .toUpperCase(),
+
+        name:name,
+
+        bloodGroup:bloodGroup,
+
+        allergy:allergy,
+
+        condition:condition
+
+    };
+
+
+    localStorage.setItem(
+        PROFILE_KEY,
+        JSON.stringify(profile)
+    );
+
+
+    const success =
+        document.getElementById("success");
+
+
+    if(success){
+
+        success.textContent =
+            "✅ LifeLink Profile has been created successfully!";
+
+    }
+
+
+    setTimeout(
+        () => {
+
+            window.location.href =
+                "qr.html";
+
+        },
+        700
+    );
+
+}
+
+
+/* =========================
+   QR GENERATION
+========================= */
+
+function renderQR(){
+
+    const box =
+        document.getElementById("qrcode");
+
+    const idEl =
+        document.getElementById("lifeLinkId");
+
+
+    if(!box || !idEl)
+        return;
+
+
+    const profile =
+        getProfile();
+
+
+    if(!profile){
+
+        idEl.textContent = "—";
+
+        return;
+
+    }
+
+
+    idEl.textContent =
+        profile.id;
+
+
+    const data =
+        encodeBase64Unicode(
+            JSON.stringify(profile)
+        );
+
+
     const profileURL =
         PROFILE_BASE_URL +
         "?p=" +
-        encodeURIComponent(encodedData);
+        encodeURIComponent(data);
 
-    // Show QR section
-    const qrSection =
-        document.getElementById("qrSection");
 
-    if (qrSection) {
-        qrSection.style.display = "block";
-    }
+    box.innerHTML = "";
 
-    // Generate QR
-    const qrContainer =
-        document.getElementById("qrcode");
 
-    if (qrContainer) {
+    const img =
+        document.createElement("img");
 
-        qrContainer.innerHTML = "";
 
-        const img =
-            document.createElement("img");
+    img.src =
+        "https://api.qrserver.com/v1/create-qr-code/" +
+        "?size=260x260&data=" +
+        encodeURIComponent(profileURL);
 
-        img.src =
-            "https://api.qrserver.com/v1/create-qr-code/" +
-            "?size=220x220&data=" +
-            encodeURIComponent(profileURL);
 
-        img.width = 220;
-        img.height = 220;
+    img.alt =
+        "LifeLink QR Code";
 
-        img.alt = "LifeLink QR Code";
+    img.width = 260;
 
-        qrContainer.appendChild(img);
-    }
+    img.height = 260;
 
-    // Show ID
-    const idElement =
-        document.getElementById("lifeLinkId");
 
-    if (idElement) {
-        idElement.textContent = profileId;
-    }
+    box.appendChild(img);
 
-    // Scroll to QR
-    setTimeout(function () {
-
-        if (qrSection) {
-            qrSection.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }
-
-    }, 500);
 }
 
 
-/* ================================
-   ACCIDENT SIMULATION
-   ================================ */
+/* =========================
+   EMERGENCY SIMULATION
+========================= */
 
-let accidentTimer = null;
+let timer = null;
 
-function startAccidentDetection() {
 
-    const normal =
-        document.getElementById("normalEmergency");
+function startEmergency(){
 
-    const countdownSection =
-        document.getElementById("countdownSection");
+    const ready =
+        document.getElementById("readyCard");
 
-    const emergency =
-        document.getElementById("emergencySection");
+    const count =
+        document.getElementById("countdownCard");
 
-    if (normal) {
-        normal.style.display = "none";
-    }
+    const alertCard =
+        document.getElementById("alertCard");
 
-    if (emergency) {
-        emergency.style.display = "none";
-    }
 
-    if (countdownSection) {
-        countdownSection.style.display = "block";
-    }
+    if(
+        !ready ||
+        !count ||
+        !alertCard
+    )
+        return;
 
-    let time = 30;
 
-    const countdown =
-        document.getElementById("countdown");
+    ready.classList.add("hidden");
 
-    if (countdown) {
-        countdown.textContent = time;
-    }
+    alertCard.classList.add("hidden");
 
-    clearInterval(accidentTimer);
+    count.classList.remove("hidden");
 
-    accidentTimer = setInterval(function () {
 
-        time--;
+    let t = 30;
 
-        if (countdown) {
-            countdown.textContent = time;
-        }
 
-        if (time <= 0) {
+    document.getElementById(
+        "countdown"
+    ).textContent = t;
 
-            clearInterval(accidentTimer);
 
-            if (countdownSection) {
-                countdownSection.style.display = "none";
+    clearInterval(timer);
+
+
+    timer = setInterval(
+        () => {
+
+            t--;
+
+
+            document.getElementById(
+                "countdown"
+            ).textContent = t;
+
+
+            if(t <= 0){
+
+                clearInterval(timer);
+
+                count.classList.add("hidden");
+
+                alertCard.classList.remove("hidden");
+
             }
 
-            if (emergency) {
-                emergency.style.display = "block";
-            }
-        }
+        },
+        1000
+    );
 
-    }, 1000);
 }
 
 
-function cancelEmergency() {
+/* =========================
+   CANCEL EMERGENCY
+========================= */
 
-    clearInterval(accidentTimer);
+function cancelEmergency(){
 
-    const countdownSection =
-        document.getElementById("countdownSection");
+    clearInterval(timer);
 
-    const normal =
-        document.getElementById("normalEmergency");
 
-    if (countdownSection) {
-        countdownSection.style.display = "none";
-    }
+    document
+        .getElementById("countdownCard")
+        ?.classList.add("hidden");
 
-    if (normal) {
-        normal.style.display = "block";
-    }
+
+    document
+        .getElementById("alertCard")
+        ?.classList.add("hidden");
+
+
+    document
+        .getElementById("readyCard")
+        ?.classList.remove("hidden");
+
 }
 
 
-function showLocation() {
+/* =========================
+   PAGE LOAD
+========================= */
 
-    const locationSection =
-        document.getElementById("locationSection");
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    if (locationSection) {
+        document
+            .getElementById("createProfile")
+            ?.addEventListener(
+                "click",
+                createProfile
+            );
 
-        locationSection.style.display = "block";
 
-        locationSection.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+        renderQR();
+
+
+        document
+            .getElementById("simulate")
+            ?.addEventListener(
+                "click",
+                startEmergency
+            );
+
+
+        document
+            .getElementById("safe")
+            ?.addEventListener(
+                "click",
+                cancelEmergency
+            );
+
+
+        document
+            .getElementById("maps")
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    window.open(
+                        "https://maps.google.com/?q=11.0168,76.9558",
+                        "_blank"
+                    );
+
+                }
+            );
+
     }
-}
+);

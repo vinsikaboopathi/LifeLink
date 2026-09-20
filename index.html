@@ -1,576 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>LifeLink - Smart Emergency Response System</title>
-
+    <title>LifeLink | Smart Emergency Response System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
+<div class="splash">
+    <div class="animated-logo splash-logo-wrap">
+        <img src="lifelink-logo.png" class="splash-logo" alt="LifeLink logo">
 
-    <nav class="navbar">
+        <svg class="heartbeat-overlay splash-heartbeat"
+             viewBox="0 0 100 20"
+             aria-hidden="true">
+            <path d="M2 10 H35 L40 10 L44 3 L48 17 L52 2 L56 16 L60 10 H98"/>
+        </svg>
+    </div>
+</div>
 
-        <div class="logo">
-            🚑 Life<span>Link</span>
-        </div>
+<header class="navbar">
 
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#profile">Profile</a>
-            <a href="#qr">QR</a>
-            <a href="#emergency">Emergency</a>
-        </div>
+    <a class="nav-brand" href="index.html">
+        <img src="lifelink-logo.png" alt="LifeLink">
+    </a>
 
+    <nav class="nav-links">
+        <a class="active" href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="qr.html">QR</a>
+        <a href="emergency.html">Emergency</a>
     </nav>
 
+</header>
 
-    <!-- ================= HERO ================= -->
+<main class="page">
 
-    <section class="hero" id="home">
+<section class="hero">
 
-        <div class="hero-content">
+    <div class="hero-wrap">
+
+        <div>
 
             <div class="badge">
-                🚨 Smart Emergency Response System
+                SMART • SAFE • CONNECTED
             </div>
 
             <h1>
-                When the victim cannot speak,
-                <span>LifeLink</span> lets their information speak.
+                When the victim<br>
+                cannot speak,<br>
+                <span>LifeLink</span> lets their<br>
+                information speak.
             </h1>
 
             <p>
-                LifeLink is an IoT and QR-based emergency response system
-                designed to provide essential medical information and
-                accident assistance when a victim cannot communicate.
+                LifeLink is an IoT and QR-based emergency response
+                system designed to provide essential medical information,
+                accident alerts and location support when it matters most.
             </p>
 
-            <div class="hero-buttons">
+            <div class="hero-actions">
 
-                <button
-                    class="primary-btn"
-                    onclick="document.getElementById('profile').scrollIntoView()">
+                <a class="btn primary" href="profile.html">
                     Create LifeLink Profile
-                </button>
+                </a>
 
-                <button
-                    class="secondary-btn"
-                    onclick="document.getElementById('emergency').scrollIntoView()">
-                    Accident Simulation
-                </button>
-
-            </div>
-
-
-            <!-- FEATURES -->
-
-            <div class="features">
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        📱
-                    </div>
-
-                    <h3>
-                        Emergency QR
-                    </h3>
-
-                    <p>
-                        Quick access to essential emergency
-                        information through a QR code.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        🚨
-                    </div>
-
-                    <h3>
-                        Accident Detection
-                    </h3>
-
-                    <p>
-                        ESP32 and MPU6050 can identify sudden
-                        impact and abnormal vehicle movement.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        📍
-                    </div>
-
-                    <h3>
-                        Location Assistance
-                    </h3>
-
-                    <p>
-                        GPS-based accident location and nearby
-                        hospital assistance can be integrated.
-                    </p>
-
-                </div>
+                <a class="btn secondary" href="qr.html">
+                    View QR Profile
+                </a>
 
             </div>
 
         </div>
 
-    </section>
+        <div class="hero-logo-card">
 
+            <div class="animated-logo hero-logo-wrap">
 
+                <img src="lifelink-logo.png"
+                     alt="LifeLink Smart Emergency Response System">
 
-    <!-- ================= PROFILE ================= -->
+                <svg class="heartbeat-overlay hero-heartbeat"
+                     viewBox="0 0 100 20"
+                     aria-hidden="true">
 
-    <section class="section" id="profile">
+                    <path d="M2 10 H35 L40 10 L44 3 L48 17 L52 2 L56 16 L60 10 H98"/>
 
-        <div class="section-title">
-
-            <span>PROFILE</span>
-
-            <h2>
-                Create Your LifeLink Profile
-            </h2>
-
-            <p>
-                Store only the essential information needed during emergencies.
-            </p>
-
-        </div>
-
-
-        <div class="form-card">
-
-            <div class="form-group">
-
-                <label for="name">
-                    Name
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your name">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="bloodGroup">
-                    Blood Group
-                </label>
-
-                <select id="bloodGroup">
-
-                    <option value="">
-                        Select Blood Group
-                    </option>
-
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="allergy">
-                    Allergies
-                </label>
-
-                <input
-                    type="text"
-                    id="allergy"
-                    placeholder="Example: None / Penicillin">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="condition">
-                    Medical Condition
-                </label>
-
-                <textarea
-                    id="condition"
-                    placeholder="Example: None / Asthma / Diabetes"></textarea>
-
-            </div>
-
-
-            <!-- PRIVATE INFORMATION -->
-
-            <div class="private-box">
-
-                <div class="private-title">
-                    🔒 Privacy Protected
-                </div>
-
-                <p>
-                    Emergency contact numbers and sensitive personal
-                    information are not displayed publicly through the QR code.
-                </p>
-
-            </div>
-
-
-            <button
-                class="primary-btn full-btn"
-                onclick="createProfile()">
-
-                Create LifeLink Profile
-
-            </button>
-
-
-            <!-- SUCCESS -->
-
-            <div
-                id="successMessage"
-                class="privacy-note hidden">
-
-                ✅ LifeLink Profile has been created successfully!
+                </svg>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
+<section class="features">
 
-    <!-- ================= QR ================= -->
+    <div class="feature-grid">
 
-    <section class="section" id="qr">
+        <article class="feature-card">
 
-        <div class="section-title">
-
-            <span>EMERGENCY QR</span>
-
-            <h2>
-                Your LifeLink QR
-            </h2>
-
-            <p>
-                Scan this QR to access essential emergency information.
-            </p>
-
-        </div>
-
-
-        <div
-            class="qr-card"
-            id="qrSection"
-            style="display: none;">
-
-            <div id="qrcode">
-
-                <!-- QR generated by JavaScript -->
-
-            </div>
-
+            <div class="feature-icon">🚨</div>
 
             <h3>
-                LifeLink Emergency Profile
+                Emergency Alert
             </h3>
 
-
             <p>
-                LifeLink ID:
-                <strong id="lifeLinkId">
-                    LL-DEMO01
-                </strong>
+                Quick emergency response when the victim cannot communicate.
             </p>
 
-
-            <div class="privacy-note">
-
-                🔒 Your contact number is not publicly displayed.
-
-            </div>
-
-        </div>
-
-    </section>
+        </article>
 
 
+        <article class="feature-card">
 
-    <!-- ================= EMERGENCY ================= -->
+            <div class="feature-icon">🏍️</div>
 
-    <section
-        class="section emergency-section"
-        id="emergency">
-
-        <div class="section-title">
-
-            <span>ACCIDENT RESPONSE</span>
-
-            <h2>
-                Emergency Detection
-            </h2>
+            <h3>
+                Accident Detection
+            </h3>
 
             <p>
-                Prototype simulation of the LifeLink accident detection process.
+                ESP32 and MPU6050 can detect a possible accident.
             </p>
 
-        </div>
+        </article>
 
 
-        <div class="emergency-card">
+        <article class="feature-card">
 
+            <div class="feature-icon">📍</div>
 
-            <!-- NORMAL STATUS -->
-
-            <div id="normalEmergency">
-
-                <div class="status-icon">
-                    🛡️
-                </div>
-
-                <h3>
-                    System Ready
-                </h3>
-
-                <p>
-                    Simulate an accident to test the emergency response flow.
-                </p>
-
-                <br>
-
-                <button
-                    class="danger-btn"
-                    onclick="startAccidentDetection()">
-
-                    🚨 Simulate Accident
-
-                </button>
-
-            </div>
-
-
-
-            <!-- COUNTDOWN -->
-
-            <div
-                id="countdownSection"
-                style="display: none;">
-
-                <div class="danger-icon">
-                    ⚠️
-                </div>
-
-                <h3>
-                    Possible Accident Detected
-                </h3>
-
-                <p class="countdown-text">
-                    Emergency mode will activate if the alert
-                    is not cancelled.
-                </p>
-
-
-                <div
-                    id="countdown"
-                    class="countdown">
-
-                    30
-
-                </div>
-
-
-                <p>
-                    seconds remaining
-                </p>
-
-
-                <br>
-
-
-                <button
-                    class="safe-btn"
-                    onclick="cancelEmergency()">
-
-                    ✓ I'm Safe - Cancel
-
-                </button>
-
-            </div>
-
-
-
-            <!-- EMERGENCY ACTIVE -->
-
-            <div
-                id="emergencySection"
-                style="display: none;">
-
-                <div class="danger-icon">
-                    🚨
-                </div>
-
-                <h3>
-                    Emergency Mode Active
-                </h3>
-
-                <p>
-                    The emergency response process has been activated.
-                </p>
-
-
-                <div class="alert-details">
-
-                    <p>
-                        🚨 <strong>Status:</strong>
-                        Emergency Detected
-                    </p>
-
-                    <p>
-                        📍 <strong>Location:</strong>
-                        GPS Prototype
-                    </p>
-
-                    <p>
-                        📱 <strong>Response:</strong>
-                        Emergency Assistance
-                    </p>
-
-                </div>
-
-
-                <button
-                    class="primary-btn"
-                    onclick="showLocation()">
-
-                    📍 Show Accident Location
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================= LOCATION ================= -->
-
-    <section
-        class="section"
-        id="locationSection"
-        style="display: none;">
-
-        <div class="section-title">
-
-            <span>LOCATION</span>
-
-            <h2>
-                Accident Location
-            </h2>
+            <h3>
+                Location Assistance
+            </h3>
 
             <p>
-                GPS and nearby hospital assistance.
+                GPS location can support faster emergency assistance.
             </p>
 
-        </div>
+        </article>
+
+    </div>
+
+</section>
+
+</main>
 
 
-        <div class="location-card">
+<footer>
 
+    <h3>LifeLink</h3>
 
-            <div class="map-placeholder">
+    <p>
+        Smart Emergency Response System
+    </p>
 
-                📍
+    <small>
+        “When the victim cannot speak,
+        LifeLink lets their information speak.”
+    </small>
 
-                <span>
-                    GPS Location
-                </span>
-
-            </div>
-
-
-            <div class="location-info">
-
-                <p>
-                    <strong>Location Status</strong>
-                    <br>
-                    Prototype Simulation
-                </p>
-
-
-                <p>
-                    📡 GPS location will be obtained from
-                    the GPS module in the hardware prototype.
-                </p>
-
-
-                <p>
-                    🏥 Nearby hospital detection and navigation
-                    will be integrated in the future version.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <h3>
-            🚑 LifeLink
-        </h3>
-
-        <p>
-            Smart Emergency Response System
-        </p>
-
-        <p class="footer-small">
-            Idea Crew | Knowledge Institute Of Technology
-        </p>
-
-    </footer>
-
-
-
-    <!-- ================= QR LIBRARY ================= -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-    <!-- ================= JAVASCRIPT ================= -->
-
-    <script src="script.js"></script>
+</footer>
 
 </body>
-
 </html>
