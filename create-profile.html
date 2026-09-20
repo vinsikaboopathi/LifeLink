@@ -1,73 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create LifeLink Profile</title>
-    <link rel="stylesheet" href="style.css?v=3">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create LifeLink Profile</title>
+<link rel="stylesheet" href="style.css?v=10">
+<style>
+/* Profile page is intentionally self-contained so GitHub Pages/browser cache cannot break the layout. */
+.profile-form-page{min-height:calc(100vh - 76px);background:#f6f9fc;padding:48px 20px 70px;display:flex;justify-content:center;align-items:flex-start}
+.profile-form-page .form-card{width:min(760px,100%);background:#fff;border:1px solid #dbe6ef;border-radius:22px;padding:36px 40px;box-shadow:0 16px 45px rgba(24,55,88,.10)}
+.profile-form-page .page-title-row{display:flex;align-items:center;gap:15px;margin-bottom:24px}
+.profile-form-page .page-title-icon{width:48px;height:48px;border-radius:14px;background:#eaf7fb;display:grid;place-items:center;font-size:25px}
+.profile-form-page h1{margin:0;color:#123b61;font-size:30px;line-height:1.2}
+.profile-form-page .form-subtitle{margin:5px 0 0;color:#718096;font-size:15px}
+.profile-form-page .privacy-note{margin:0 0 26px;padding:16px 18px;border:1px solid #bfe8e7;border-left:5px solid #0c9ca5;border-radius:12px;background:#effafa;color:#526b7e;font-size:14px;line-height:1.5}
+.profile-form-page .privacy-title{font-weight:800;color:#087f8a;margin-bottom:3px}
+.profile-form-page #profileForm{display:grid;grid-template-columns:1fr 1fr;gap:20px 18px}
+.profile-form-page .field-group{display:flex;flex-direction:column;gap:8px}
+.profile-form-page .field-group label{font-size:14px;font-weight:800;color:#183a5a}
+.profile-form-page .field-group input,.profile-form-page .field-group select{width:100%;height:50px;padding:0 15px;border:1px solid #cbd9e5;border-radius:10px;background:#fbfdff;color:#173a5e;font-size:15px;outline:none;transition:.2s}
+.profile-form-page .field-group input:focus,.profile-form-page .field-group select:focus{border-color:#0b91b6;box-shadow:0 0 0 3px rgba(11,145,182,.10);background:#fff}
+.profile-form-page .field-group input::placeholder{color:#9aa9b8}
+.profile-form-page .full-btn{grid-column:1/-1;margin-top:3px;width:100%;height:52px;border:0;border-radius:10px;background:linear-gradient(135deg,#0c8db5,#087ea5);color:#fff;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(8,126,165,.18)}
+.profile-form-page .full-btn:hover{transform:translateY(-1px)}
+@media(max-width:700px){.profile-form-page{padding:28px 14px 50px}.profile-form-page .form-card{padding:25px 18px;border-radius:18px}.profile-form-page #profileForm{grid-template-columns:1fr}.profile-form-page .full-btn{grid-column:auto}.profile-form-page h1{font-size:25px}}
+</style>
 </head>
 <body class="inner-page-body">
 <header class="navbar">
-    <a href="index.html" class="nav-logo"><img src="lifelink-logo.png" alt="LifeLink"></a>
-    <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="create-profile.html" class="active">Profile</a>
-        <a href="qr.html">QR</a>
-        <a href="emergency.html">Emergency</a>
-    </nav>
+  <a href="index.html" class="nav-logo"><img src="lifelink-logo.png" alt="LifeLink"></a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="create-profile.html" class="active">Profile</a>
+    <a href="qr.html">QR</a>
+    <a href="emergency.html">Emergency</a>
+  </nav>
 </header>
 
-<main class="page-container profile-form-page">
-    <section class="form-card">
-        <div class="page-title-row">
-            <div class="page-title-icon">👤</div>
-            <div>
-                <h1>Create LifeLink Profile</h1>
-                <p class="form-subtitle">Add essential medical information for emergency situations.</p>
-            </div>
-        </div>
+<main class="profile-form-page">
+<section class="form-card">
+  <div class="page-title-row">
+    <div class="page-title-icon">👤</div>
+    <div>
+      <h1>Create LifeLink Profile</h1>
+      <p class="form-subtitle">Add essential medical information for emergency situations.</p>
+    </div>
+  </div>
 
-        <div class="privacy-note">
-            <div class="privacy-title">🔒 Privacy Protected</div>
-            <div>Emergency contact numbers and sensitive personal information are not displayed publicly through the QR code.</div>
-        </div>
+  <div class="privacy-note">
+    <div class="privacy-title">🔒 Privacy Protected</div>
+    <div>Only essential emergency information will be available through the public QR profile. Emergency contact numbers are not displayed publicly.</div>
+  </div>
 
-        <form id="profileForm">
-            <div class="field-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Enter your full name" autocomplete="name" required>
-            </div>
-
-            <div class="field-group">
-                <label for="bloodGroup">Blood Group</label>
-                <select id="bloodGroup" required>
-                    <option value="">Select blood group</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
-            </div>
-
-            <div class="field-group">
-                <label for="allergy">Allergies</label>
-                <input type="text" id="allergy" placeholder="Example: Penicillin / None">
-            </div>
-
-            <div class="field-group">
-                <label for="condition">Medical Condition</label>
-                <input type="text" id="condition" placeholder="Example: Asthma / None">
-            </div>
-
-            <button type="submit" class="primary-btn full-btn">Generate LifeLink QR</button>
-        </form>
-    </section>
+  <form id="profileForm">
+    <div class="field-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" autocomplete="name" required>
+    </div>
+    <div class="field-group">
+      <label for="bloodGroup">Blood Group</label>
+      <select id="bloodGroup" required>
+        <option value="">Select blood group</option>
+        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+      </select>
+    </div>
+    <div class="field-group">
+      <label for="allergy">Allergies</label>
+      <input type="text" id="allergy" placeholder="Example: Penicillin / None">
+    </div>
+    <div class="field-group">
+      <label for="condition">Medical Condition</label>
+      <input type="text" id="condition" placeholder="Example: Asthma / None">
+    </div>
+    <button type="submit" class="full-btn">Generate LifeLink QR</button>
+  </form>
+</section>
 </main>
-
-<script src="script.js?v=3"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>

@@ -331,6 +331,9 @@ function openEmergencyLocation() {
    ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     initProfileForm();
+    initQRPage();
+    loadPublicProfile();
+    initEmergencyPage();
 
     const splash = document.getElementById("splashScreen");
     if (splash) {
