@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeLink QR</title>
-    <link rel="stylesheet" href="style.css?v=10">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLink QR</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="inner-page-body">
-<header class="navbar">
+<body class="inner-page">
+  <header class="navbar">
     <a href="index.html" class="nav-logo"><img src="lifelink-logo.png" alt="LifeLink"></a>
     <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="create-profile.html">Profile</a>
-        <a href="qr.html" class="active">QR</a>
-        <a href="emergency.html">Emergency</a>
+      <a href="index.html">Home</a>
+      <a href="create-profile.html">Profile</a>
+      <a href="qr.html" class="active">QR</a>
+      <a href="emergency.html">Emergency</a>
     </nav>
-</header>
+  </header>
 
-<main class="page-container">
-    <section class="qr-card">
-        <div class="page-title-row center-title">
-            <div class="page-title-icon">▣</div>
-            <div>
-                <h1>Your LifeLink QR</h1>
-                <p class="form-subtitle">Scan this code to view essential emergency information.</p>
-            </div>
+  <main class="page-container qr-page-container">
+    <div class="qr-card premium-card">
+      <div class="page-eyebrow">SMART • SAFE • CONNECTED</div>
+      <img src="lifelink-logo.png" alt="LifeLink" class="small-page-logo">
+      <h1>Your LifeLink QR</h1>
+      <p class="form-subtitle">One scan gives a responder the essential medical information they need.</p>
+
+      <div class="qr-profile-strip">
+        <div class="qr-avatar">♥</div>
+        <div>
+          <span class="mini-label">PROFILE</span>
+          <strong id="qrProfileName">LifeLink User</strong>
         </div>
+      </div>
 
-        <div class="qr-box" id="qrBox"><p>Generating QR...</p></div>
-        <div class="qr-info" id="qrInfo"></div>
+      <div id="qrArea"><div class="loading">Loading QR...</div></div>
 
-        <div class="qr-actions">
-            <a href="create-profile.html" class="secondary-btn">Edit Profile</a>
-            <button class="primary-btn" type="button" onclick="openQRProfile()">Test Scan</button>
-        </div>
-    </section>
-</main>
-<script src="script.js?v=3"></script>
-<script>document.addEventListener('DOMContentLoaded', initQRPage);</script>
+      <div class="qr-id" id="qrId"></div>
+
+      <div class="button-row">
+        <a id="openQR" href="#" class="primary-btn" target="_blank">Open QR Profile</a>
+        <a id="downloadQR" href="#" class="secondary-btn" target="_blank">View QR Image</a>
+      </div>
+
+      <a href="create-profile.html" class="text-link">Edit profile</a>
+
+      <div class="privacy-note qr-privacy">
+        🔒 <strong>Privacy protected</strong><br>
+        Only name, blood group, allergies and medical condition are shared. Emergency phone numbers are not shown publicly.
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeLink Emergency</title>
-    <link rel="stylesheet" href="style.css?v=10">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLink Emergency</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header class="navbar">
+<body class="inner-page">
+  <header class="navbar">
     <a href="index.html" class="nav-logo"><img src="lifelink-logo.png" alt="LifeLink"></a>
     <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="create-profile.html">Profile</a>
-        <a href="qr.html">QR</a>
-        <a href="emergency.html" class="active">Emergency</a>
+      <a href="index.html">Home</a>
+      <a href="create-profile.html">Profile</a>
+      <a href="qr.html">QR</a>
+      <a href="emergency.html" class="active">Emergency</a>
     </nav>
-</header>
+  </header>
 
-<main class="page-container">
-    <div class="emergency-card">
-        <div class="emergency-icon">🚨</div>
-        <h1>LifeLink Emergency Demo</h1>
-        <p>Simulates accident detection and emergency response.</p>
+  <main class="page-container emergency-page-container">
+    <div class="emergency-card premium-card">
+      <div class="page-eyebrow">ACCIDENT RESPONSE SIMULATOR</div>
+      <div class="emergency-icon">🚨</div>
+      <h1>LifeLink Emergency</h1>
+      <p class="form-subtitle">Demo the accident detection → confirmation → emergency alert flow.</p>
 
-        <div id="emergencyStatus" class="emergency-status">System Ready</div>
-        <div id="countdown" class="countdown">30</div>
+      <div id="emergencyStatus" class="emergency-status">System Ready</div>
+      <div id="smsStatus" class="demo-note" style="margin-top:12px;">SMS status: Ready</div>
+      <div id="countdown" class="countdown">30</div>
+      <p class="countdown-caption">seconds before the emergency alert is triggered</p>
 
-        <button id="startEmergency" class="danger-btn" type="button">Simulate Accident</button>
-        <button id="cancelEmergency" class="secondary-btn hidden" type="button">Cancel Alert</button>
-        <button id="locationButton" class="primary-btn hidden" type="button">📍 Open Location</button>
+      <div class="emergency-actions">
+        <button id="startEmergency" class="danger-btn">Simulate Accident</button>
+        <button id="cancelEmergency" class="secondary-btn hidden">I'm Safe — Cancel</button>
+        <button id="locationButton" class="primary-btn hidden">📍 Open Demo Location</button>
+      </div>
+
+      <div class="demo-note">This page is a software demonstration. Real GPS, GSM and hospital notification hardware can be integrated later.</div>
     </div>
-</main>
-<script src="script.js?v=3"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', initEmergencyPage);
-</script>
+  </main>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/12.4.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore-compat.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
